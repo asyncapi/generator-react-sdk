@@ -1,0 +1,45 @@
+{
+  "name": "@asyncapi/generator-react-sdk",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "dependencies": {
+    "@asyncapi/parser": "^1.2.0",
+    "create-react-class": "^15.7.0",
+    "jsdoc-to-markdown": "^6.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "react-test-renderer": "^17.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.2.2",
+    "better-docs": "^2.3.2",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.0.0",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "jsdoc": "^3.6.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "cross-env CI=true react-scripts test",
+    "test:watch": "react-scripts test",
+    "test:coverage": "npm test -- --coverage", 
+    "eject": "react-scripts eject",
+    "docs": "npm run docs:html & npm run docs:markdown",
+    "docs:html": "./node_modules/.bin/jsdoc -c jsdoc.conf.json",
+    "docs:markdown": "./node_modules/.bin/jsdoc2md src/index.js -f src/**/*.js > API.md",
+    "lint": "eslint --max-warnings 0 --config .eslintrc .",
+    "lint:fix": "eslint --max-warnings 0 --config .eslintrc . --fix"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  }
+}

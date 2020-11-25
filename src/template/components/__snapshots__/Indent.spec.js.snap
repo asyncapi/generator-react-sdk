@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Indent /> Should always render indentation with spaces: indent_should_render_space_indentation 1`] = `"    Test"`;
+
+exports[`<Indent /> Should always render indentation with tabs: indent_should_render_tab_indentation 1`] = `"				Test"`;
+
+exports[`<Indent /> Should be able to handle wrong props values: indent_with_wrong_props_should_throw_error 1`] = `"Invalid array length"`;
