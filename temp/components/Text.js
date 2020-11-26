@@ -9,8 +9,9 @@ import { IndentationPropTypes } from './utils/PropTypes';
  *
  * @component
  * @example
- * const size = 4
+ * const indent = 4
  * const type = IndentationTypes.SPACES
+ * const newLines = 2
  * return (
  *   <Text size={size} type={type}>Test</Text>
  * )
