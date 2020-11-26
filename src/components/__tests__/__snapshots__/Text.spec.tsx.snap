@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Text /> Should always render indentation with spaces: text_should_render_space_indentation 1`] = `
-"Test
+"    Test
 "
 `;
 
 exports[`<Text /> Should always render indentation with tabs: text_should_render_tab_indentation 1`] = `
-"Test
+"				Test
 "
 `;
 

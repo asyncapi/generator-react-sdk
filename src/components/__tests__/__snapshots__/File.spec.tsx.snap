@@ -3,7 +3,7 @@
 exports[`<File /> Should always be able to render Indent: file_should_render_text_component 1`] = `"    Test"`;
 
 exports[`<File /> Should always be able to render Text: file_should_render_text_component 1`] = `
-"Test
+"    Test
 "
 `;
 
