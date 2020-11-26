@@ -13,7 +13,9 @@ export interface TextProps {
    * `type` prop expects a string, you can use the `IndentationTypes` enum, as either `TABS` or `SPACES`. The `type` defaults to `SPACES`. 
    */
   type?: IndentationTypes;
-
+  /**
+   * `newLines` prop represents the number of appended new lines. Default to one new line.
+   */
   newLines?: number;
 }
 
@@ -26,7 +28,9 @@ export const TextPropTypes = {
    * `type` prop expects a string, you can use the `IndentationTypes` enum, as either `TABS` or `SPACES`. The `type` defaults to `SPACES`. 
    */
   type: PropTypes.oneOf(Object.values(IndentationTypes)),
-
+  /**
+   * `newLines` prop represents the number of appended new lines. Default to one new line.
+   */
   newLines: PropTypes.number,
 };
 

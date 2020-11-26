@@ -1,4 +1,12 @@
-function normalizeProps(props: any = {}) {
+import { PropsWithChildren } from "../types";
+
+/**
+ * Normalizes given props with render children to string and save value to `children` prop
+ * @private
+ * @param {Any} props 
+ * @returns {Any} normalized props.
+ */
+function normalizeProps<P = any>(props: any): PropsWithChildren<P> {
   const children = props.children;
   let newChildren = render(children);
 
@@ -9,59 +17,65 @@ function normalizeProps(props: any = {}) {
   }
 }
 
-function createElement(element: any): any {
-  if (typeof element.type === 'string') {
+/**
+ * Executes a `render` method on a given component (in the case of a class component)
+ * or executes the component itself (a functional component) to get pure string or complex value for the next operations
+ * @private
+ * @param {React.ReactElement} element given componen
+ * @returns {(React.ReactElement | string)}
+ */
+function createElement(element: React.ReactElement): React.ReactElement | string {
+  if (!element) {
+    return "";
+  }
+  const typeOf = typeof element.type;
+
+  if (typeOf === 'string') {
     // HTML (also not standard) tags case
-    throw new Error("HTML tags is not supported yet!");
-  } else if (typeof element.type === 'symbol') {
+    throw new Error("HTML tags is not supported yet...");
+  } else if (typeOf === 'symbol') {
     // internal React types like Fragments, Portal etc. We skip them.
     return render(element.props.children);
-  } else if (typeof element.type === 'function') {
-    const { type, props } = element;
+  } else if (typeOf === 'function') {
+    // custom components case
+    const type = element.type as any;
     const prototype = type.prototype;
 
     // Class component case
     if (prototype && typeof prototype.isReactComponent === "object") {
-      const clazzComp = new type(normalizeProps(props));
+      const clazzComp = new type(normalizeProps(element.props));
       return createElement(clazzComp.render());
-    } 
+    }
     // Function component case
-    return createElement(type(normalizeProps(props)));
+    return createElement(type(normalizeProps(element.props)));
   }
+
   return element || "";
 }
 
-export function render(node: React.ReactNode) {
+/**
+ * Renders given component to string
+ * 
+ * @param {ReactNode} component A given component to rendering
+ * @example
+ * function Component({ textProp }) {
+ *   return <>{textProp}</>
+ * }
+ * render(<Component textProp="someText" />)
+ * @returns {string}
+ */
+export function render(component: React.ReactNode): string {
   let content = "";
-  const typeOf = typeof node;
+  const typeOf = typeof component;
   if (typeOf === 'string') {
-    content += node;
-  } else if (Array.isArray(node)) {
-    content += node.map(child => {
-      const childValue = createElement(child);
+    content += component;
+  } else if (Array.isArray(component)) {
+    content += component.map(child => {
+      const childValue = createElement(child as React.ReactElement);
       return render(childValue);
     }).join("");
-  } else {
-    content += createElement(node);
+  } else if (typeOf === "object") {
+    content += createElement(component as React.ReactElement);
   }
-  return content || "";
-}
-
-export function renderTemplate(element: any = {}) {
-  const { type, props = {} } = element;
-
-  if (typeof type !== "function" && type.name !== "File") {
-    throw new Error("File is required as first node in template!");
-  }
-  if (props.name === undefined) {
-    throw new Error("`name` prop in File component is required!");
-  }
-
-  return {
-    metadata: {
-      name: props.name,
-      permissions: props.permissions,
-    },
-    content: render(props.children),
-  }
+  return content;
 }

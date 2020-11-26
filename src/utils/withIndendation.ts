@@ -16,8 +16,9 @@ export enum IndentationTypes {
  * @param {string} content to prepend the indentation
  * @param {number} size the number of indendations to use
  * @param {IndentationTypes} type the type of indendations to use. SPACES by default.
+ * @returns {string}
  */
-export function withIndendation(content: string = '', size: number, type: IndentationTypes = IndentationTypes.SPACES) {
+export function withIndendation(content: string = '', size: number, type: IndentationTypes = IndentationTypes.SPACES): string {
   if (typeof content !== 'string') {
     throw new Error('Content must be a string');
   }
@@ -41,16 +42,13 @@ export function withIndendation(content: string = '', size: number, type: Indent
  * @private
  * @param {number} size the number of indendations to use
  * @param {IndentationTypes} type the type of indendations to use. SPACES by default.
+ * @returns {string}
  */
-const getIndentation = (size: number, type: IndentationTypes = IndentationTypes.SPACES) => {
+function getIndentation(size: number, type: IndentationTypes = IndentationTypes.SPACES): string {
   const whitespaceChar = type === IndentationTypes.SPACES ? ' ' : '\t';
   if (size !== undefined) {
     const numberSize = Number(size);
     return Array(numberSize).fill(whitespaceChar).join("");
-    // const arrayToUse = Array.from(Array(numberSize).keys());
-    // return arrayToUse.reduce((accumulator) => {
-    //   return `${accumulator === 0 ? whitespaceChar : accumulator}${whitespaceChar}`;
-    // });
   } 
   return '';
 }

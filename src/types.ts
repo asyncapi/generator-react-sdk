@@ -1,6 +1,7 @@
 import React from "react";
 
-export type PropsWithChildren<P> = P & { 
+export type PropsWithChildren<P> = P & {
+  children?: string;
   $$children?: React.ReactNode,
 }
 
