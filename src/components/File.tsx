@@ -5,7 +5,7 @@ import { FunctionComponent } from "../types";
 
 export interface FileProps {
   name?: string;
-  permissions?: Array<string>;
+  permissions?: number;
 }
 
 export const FilePropTypes = {
@@ -14,9 +14,9 @@ export const FilePropTypes = {
    */
   name: PropTypes.string,
   /**
-   * `permissions` prop describes the permissions the file should be created with.
+   * `permissions` prop describes the permissions the file should be created with. This is interpreted as an octal number such as 
    */
-  permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
+  permission: PropTypes.number,
 };
 
 /**
@@ -24,14 +24,13 @@ export const FilePropTypes = {
  * 
  * @component
  * @example
- * const name = 4
- * const type = IndentationTypes.SPACES
- * const newLines = 2
+ * const name = "test.js"
+ * const permissions = 0o777
  * return (
- *   <File indent={size} type={type} newLines={newLines}>Test</Text>
+ *   <File size={size} type={type}>Test</File>
  * )
  */
-const File: FunctionComponent<FileProps> = ({ name = '', permissions = [], children }) => {
+const File: FunctionComponent<FileProps> = ({ name, permissions, children }) => {
   return <>{children}</>;
 };
 
