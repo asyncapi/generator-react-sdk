@@ -39,7 +39,6 @@ export const IndentPropTypes = {
  *   <Indent size={size} type={type}>test</Indent>
  * )
  */
-// TODO: fix type for children
 const Indent: FunctionComponent<IndentProps> = ({ size = 0, type = IndentationTypes.SPACES, childrenContent }) => {
   return <>{withIndendation(childrenContent, size, type)}</>;
 };

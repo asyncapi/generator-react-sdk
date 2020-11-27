@@ -1,12 +1,12 @@
-import { PropsWithChildren } from "../types";
+import { PropsWithChildrenContent } from "../types";
 
 /**
- * Normalizes given props with render children to string and save value to `children` prop
+ * Normalizes given props with render children to string and save value to `childrenContent` prop
  * @private
  * @param {Any} props 
  * @returns {Any} normalized props.
  */
-function normalizeProps<P = any>(props: any): PropsWithChildren<P> {
+function normalizeProps<P = any>(props: any): PropsWithChildrenContent<P> {
   return { 
     ...props, 
     childrenContent: render(props.children),
