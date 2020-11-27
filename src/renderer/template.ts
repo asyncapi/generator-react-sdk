@@ -3,6 +3,12 @@ import { render } from "./renderer";
 import Path from 'path';
 import Fs from 'fs';
 import {transform} from '@babel/core';
+
+/**
+ * Imports a given file and return the imported component
+ * 
+ * @param filepath to import
+ */
 function importComponent(filepath:string): Promise<React.ReactElement> {
   return new Promise((resolve) => {
     import(filepath).then(component => { resolve(component.default()) })
@@ -10,16 +16,18 @@ function importComponent(filepath:string): Promise<React.ReactElement> {
 }
 
 /**
- * Renders the given template to string
- * @param {React.ReactElement} template given template
+ * render a file with react. This function automatically transforms jsx to js before importing the component.
+ * 
+ * @param filepath file to render
+ * @param workingDirectory for babel to transpile files
  */
-export async function renderTemplate(filepath: string, templatedir: string) {
+export async function renderTemplate(filepath: string, workingDirectory: string) {
 
   //compile the template dir first
   const parsedFile = Path.parse(filepath)
   const dir = parsedFile.dir
   const files = Fs.readdirSync(dir);
-  const outputDir = Path.resolve(dir, 'output');
+  const outputDir = Path.resolve(dir, '../__transpiled');
   const inputFile = Path.resolve(outputDir, parsedFile.base);
   if (!Fs.existsSync(outputDir)){
     Fs.mkdirSync(outputDir);
@@ -28,7 +36,7 @@ export async function renderTemplate(filepath: string, templatedir: string) {
     const filecontent = Fs.readFileSync(Path.resolve(dir, file));
     const filecontentString = filecontent.toString();
     var babelTransformed = transform(filecontentString, {
-      cwd: templatedir,
+      cwd: workingDirectory,
       presets: [
         "@babel/preset-env",
         "@babel/preset-react"
@@ -44,6 +52,8 @@ export async function renderTemplate(filepath: string, templatedir: string) {
   if (typeof type !== "function" || type.name !== "File") {
     throw new Error("File is required as first node in template!");
   }
+  
+  Fs.rmdirSync(outputDir, { recursive: true });
 
 
   return {
