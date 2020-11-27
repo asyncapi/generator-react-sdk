@@ -47,8 +47,8 @@ export const TextPropTypes = {
  * )
  */
 // TODO: fix type for children
-const Text: FunctionComponent<TextProps> = ({ indent = 0, type = IndentationTypes.SPACES, newLines = 1, children }) => {
-  const contentWithLines = withNewLines(children as any, newLines);
+const Text: FunctionComponent<TextProps> = ({ indent = 0, type = IndentationTypes.SPACES, newLines = 1, childrenContent }) => {
+  const contentWithLines = withNewLines(childrenContent, newLines);
   return <>{withIndendation(contentWithLines, indent, type)}</>;
 };
 

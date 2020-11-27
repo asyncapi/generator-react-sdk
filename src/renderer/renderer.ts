@@ -7,13 +7,9 @@ import { PropsWithChildren } from "../types";
  * @returns {Any} normalized props.
  */
 function normalizeProps<P = any>(props: any): PropsWithChildren<P> {
-  const children = props.children;
-  let newChildren = render(children);
-
   return { 
     ...props, 
-    children: newChildren,
-    $$children: children,
+    childrenContent: render(props.children),
   }
 }
 

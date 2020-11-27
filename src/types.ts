@@ -1,8 +1,7 @@
 import React from "react";
 
 export type PropsWithChildren<P> = P & {
-  children?: string;
-  $$children?: React.ReactNode,
+  childrenContent?: string;
 }
 
 export type FC<P = {}> = FunctionComponent<P>;
