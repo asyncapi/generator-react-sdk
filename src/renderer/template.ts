@@ -25,16 +25,18 @@ export async function renderTemplate(filepath: string, templatedir: string) {
     Fs.mkdirSync(outputDir);
   }
   files.forEach(file => {
-    const filecontent = Fs.readFileSync(file);
-    var babelTransformed = transform(filecontent.toString(), {
+    const filecontent = Fs.readFileSync(Path.resolve(dir, file));
+    const filecontentString = filecontent.toString();
+    var babelTransformed = transform(filecontentString, {
       cwd: templatedir,
       presets: [
         "@babel/preset-env",
         "@babel/preset-react"
       ]
     })
-
-    Fs.writeFileSync(Path.resolve(outputDir, Path.parse(file).base), String(babelTransformed?.code))
+    const outputFile = Path.resolve(outputDir, Path.parse(file).base);
+    const outputContent = String(babelTransformed?.code);
+    Fs.writeFileSync(outputFile, outputContent)
   })
 
   const { type, props = {} } = await importComponent(inputFile);
