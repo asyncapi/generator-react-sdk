@@ -3,6 +3,7 @@ import { render } from "./renderer";
 import Path from 'path';
 import Fs from 'fs';
 import {transform} from '@babel/core';
+const ROOT_DIR = Path.resolve(__dirname, '../..');
 
 /**
  * Imports a given file and return the imported component
@@ -19,9 +20,8 @@ function importComponent(filepath:string): Promise<React.ReactElement> {
  * render a file with react. This function automatically transforms jsx to js before importing the component.
  * 
  * @param filepath file to render
- * @param workingDirectory for babel to transpile files
  */
-export async function renderTemplate(filepath: string, workingDirectory: string) {
+export async function renderTemplate(filepath: string, context: any, debug: boolean = false) {
 
   //compile the template dir first
   const parsedFile = Path.parse(filepath)
@@ -32,17 +32,26 @@ export async function renderTemplate(filepath: string, workingDirectory: string)
   if (!Fs.existsSync(outputDir)){
     Fs.mkdirSync(outputDir);
   }
+
   files.forEach(file => {
-    const filecontent = Fs.readFileSync(Path.resolve(dir, file));
+    const filePathString = Path.resolve(dir, file)
+    const filePath = Path.parse(filePathString);
+    const filecontent = Fs.readFileSync(filePathString);
     const filecontentString = filecontent.toString();
     var babelTransformed = transform(filecontentString, {
-      cwd: workingDirectory,
+      cwd: ROOT_DIR,
+      sourceMaps: "inline",
+      sourceRoot: dir,
+      plugins: [
+        "source-map-support"
+      ],
       presets: [
         "@babel/preset-env",
         "@babel/preset-react"
-      ]
+      ],
+      sourceFileName: filePath.base
     })
-    const outputFile = Path.resolve(outputDir, Path.parse(file).base);
+    const outputFile = Path.resolve(outputDir, filePath.base);
     const outputContent = String(babelTransformed?.code);
     Fs.writeFileSync(outputFile, outputContent)
   })
@@ -53,7 +62,7 @@ export async function renderTemplate(filepath: string, workingDirectory: string)
     throw new Error("File is required as first node in template!");
   }
   
-  Fs.rmdirSync(outputDir, { recursive: true });
+  if (debug !== true) Fs.rmdirSync(outputDir, { recursive: true });
 
 
   return {
