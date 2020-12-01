@@ -1,5 +1,5 @@
 import React from "react";
-import { TemplateRenderResult } from "types";
+import { TemplateRenderResult } from "../types";
 import { render } from "./renderer";
 
 /**
