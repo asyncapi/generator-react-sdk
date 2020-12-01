@@ -1,4 +1,5 @@
 import React from "react";
+import { TemplateRenderResult } from "types";
 import { render } from "./renderer";
 
 /**
@@ -26,12 +27,9 @@ export async function renderTemplate(filepath: string, context: any, debug: bool
     throw new Error("File is required as first node in template!");
   }
 
-  return {
-    metadata: {
+  return new TemplateRenderResult(render(props.children), {
       name: props.name,
       permissions: props.permissions,
-    },
-    content: render(props.children),
-  }
+  });
 }
 

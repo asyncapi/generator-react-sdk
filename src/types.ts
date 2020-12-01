@@ -19,3 +19,20 @@ export class TranspileFilesOptions {
    */
   recursive: boolean = false
 }
+
+export class TemplateRenderMetadata {
+  name?: string;
+  permissions?: string;
+  constructor(name: (string|undefined), permissions: (string|undefined)){
+    this.name = name;
+    this.permissions = permissions;
+  }
+}
+export class TemplateRenderResult {
+  metadata: TemplateRenderMetadata;
+  content: string;
+  constructor(content: string, metadata: TemplateRenderMetadata){
+    this.content = content; 
+    this.metadata = metadata;
+  }
+}
