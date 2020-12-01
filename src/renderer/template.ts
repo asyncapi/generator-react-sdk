@@ -7,21 +7,19 @@ import { render } from "./renderer";
  * 
  * @param filepath to import
  */
-function importComponent(filepath:string): Promise<React.ReactElement> {
+function importComponent(filepath: string, context: any): Promise<React.ReactElement> {
   return new Promise((resolve) => {
-    import(filepath).then(component => { resolve(component.default()) })
+    import(filepath).then(component => { resolve(component.default(context)) })
   })
 }
 
-
-    
 /**
  * render a file with react. This function automatically transforms jsx to js before importing the component.
  * 
  * @param filepath file to render
  */
 export async function renderTemplate(filepath: string, context: any, debug: boolean = false) {
-  const { type, props = {} } = await importComponent(filepath);
+  const { type, props = {} } = await importComponent(filepath, context);
 
   if (typeof type !== "function" || type.name !== "File") {
     throw new Error("File is required as first node in template!");
@@ -32,4 +30,3 @@ export async function renderTemplate(filepath: string, context: any, debug: bool
       permissions: props.permissions,
   });
 }
-
