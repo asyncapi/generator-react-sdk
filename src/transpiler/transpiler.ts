@@ -10,7 +10,7 @@ import { TranspileFilesOptions } from '../types';
 const ROOT_DIR = Path.resolve(__dirname, '../..');
 
 /**
- * Transpile files in directory and write it to an output directory, if no errors are thrown it completed successfully.
+ * Transpile files in a given directory (and sub directory if recursive option are passed) and write it to an output directory, if no errors are thrown it completed successfully.
  * 
  * @param directory to transpile.
  * @param outputDir to write the transpiled files to.
