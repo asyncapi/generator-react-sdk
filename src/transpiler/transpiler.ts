@@ -1,13 +1,13 @@
-
-
 import Path from 'path';
 
-const ROOT_DIR = Path.resolve(__dirname, '../..');
 import { rollup } from 'rollup';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
+
 import { getFilesInDir } from '../utils';
 import { TranspileFilesOptions } from '../types';
+
+const ROOT_DIR = Path.resolve(__dirname, '../..');
 
 /**
  * Transpile files in directory and write it to a directory, if no errors are thrown it completed successfully.
