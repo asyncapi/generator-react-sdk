@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "./renderer";
 import Path from 'path';
 import Fs from 'fs';
-import { transpileFiles } from "./transpiler";
+import { transpileFiles } from "../transpiler";
 
 /**
  * Imports a given file and return the imported component
@@ -28,7 +28,6 @@ export async function renderTemplate(filepath: string, context: any, debug: bool
   const outputDir = Path.resolve(dir, '../__transpiled');
   //compile the template dir first
   await transpileFiles(filepath, outputDir, {recursive: true});
-
   
   const inputFile = Path.resolve(outputDir, parsedFile.base);
   const { type, props = {} } = await importComponent(inputFile);
@@ -38,7 +37,6 @@ export async function renderTemplate(filepath: string, context: any, debug: bool
   }
   
   if (debug !== true) Fs.rmdirSync(outputDir, { recursive: true });
-
 
   return {
     metadata: {
