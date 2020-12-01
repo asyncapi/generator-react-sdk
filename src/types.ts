@@ -21,10 +21,10 @@ export class TranspileFilesOptions {
 }
 
 export class TemplateRenderMetadata {
-  name?: string;
+  fileName?: string;
   permissions?: string;
-  constructor(name: (string|undefined), permissions: (string|undefined)){
-    this.name = name;
+  constructor(fileName: (string|undefined), permissions: (string|undefined)){
+    this.fileName = fileName;
     this.permissions = permissions;
   }
 }

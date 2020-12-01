@@ -4,19 +4,19 @@ import PropTypes from 'prop-types';
 import { FunctionComponent } from "../types";
 
 export interface FileProps {
-  name?: string;
+  fileName?: string;
   permissions?: number;
 }
 
 export const FilePropTypes = {
   /**
-   * `name` prop describes the filename for which should be used when generating the file. If none is specified the filename for the template are used.
+   * `fileName` prop describes the filename for which should be used when generating the file. If none is specified the filename for the template are used.
    */
-  name: PropTypes.string,
+  fileName: PropTypes.string,
   /**
    * `permissions` prop describes the permissions the file should be created with. This is interpreted as an octal number such as 
    */
-  permission: PropTypes.number,
+  permissions: PropTypes.number,
 };
 
 /**
@@ -24,13 +24,13 @@ export const FilePropTypes = {
  * 
  * @component
  * @example
- * const name = "test.js"
+ * const fileName = "test.js"
  * const permissions = 0o777
  * return (
  *   <File size={size} type={type}>Test</File>
  * )
  */
-const File: FunctionComponent<FileProps> = ({ name, permissions, children }) => {
+const File: FunctionComponent<FileProps> = ({ fileName, permissions, children }) => {
   return <>{children}</>;
 };
 

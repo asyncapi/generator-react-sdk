@@ -26,7 +26,7 @@ export async function renderTemplate(filepath: string, context: any, debug: bool
   }
 
   return new TemplateRenderResult(render(props.children), {
-      name: props.name,
-      permissions: props.permissions,
+    fileName: props.fileName,
+    permissions: props.permissions,
   });
 }
