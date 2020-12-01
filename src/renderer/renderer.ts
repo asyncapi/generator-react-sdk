@@ -17,7 +17,7 @@ function normalizeProps<P = any>(props: any): PropsWithChildrenContent<P> {
  * Executes a `render` method on a given component (in the case of a class component)
  * or executes the component itself (a functional component) to get pure string or complex value for the next operations
  * @private
- * @param {React.ReactElement} element given componen
+ * @param {React.ReactElement} element a given component or complex form
  * @returns {(React.ReactElement | string)}
  */
 function createElement(element: React.ReactElement): React.ReactElement | string {
@@ -52,7 +52,7 @@ function createElement(element: React.ReactElement): React.ReactElement | string
 /**
  * Renders given component to string
  * 
- * @param {ReactNode} component A given component to rendering
+ * @param {ReactNode} component a given component to rendering
  * @example
  * function Component({ textProp }) {
  *   return <>{textProp}</>
