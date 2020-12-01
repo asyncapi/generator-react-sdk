@@ -11,7 +11,7 @@ describe('<File />', () => {
 
   test('Should alwyas render as is with props', () => {
     const defaultProps = {
-      name: 'test.ts',
+      fileName: 'test.ts',
       permissions: 0o777
     };
     const wrapper = render(<File {...defaultProps}>Test</File>);
