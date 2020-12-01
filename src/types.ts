@@ -22,28 +22,19 @@ export interface TemplateContext<P = Record<string, any>>{
 /**
  * Options for transpiling files.
  */
-export class TranspileFilesOptions {
+export type TranspileFilesOptions = {
   /**
    * Should all files in a directory including those in subdirectories be included
    */
-  recursive: boolean = false
+  recursive: boolean
 }
 
-export class TemplateRenderMetadata {
+export type TemplateRenderMetadata = {
   fileName?: string;
   permissions?: string;
-  constructor(fileName: (string|undefined), permissions: (string|undefined)){
-    this.fileName = fileName;
-    this.permissions = permissions;
-  }
 }
 
-export class TemplateRenderResult {
+export type TemplateRenderResult = {
   metadata: TemplateRenderMetadata;
   content: string;
-
-  constructor(content: string, metadata: TemplateRenderMetadata) {
-    this.content = content; 
-    this.metadata = metadata;
-  }
 }

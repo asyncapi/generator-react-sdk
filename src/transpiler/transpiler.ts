@@ -10,7 +10,7 @@ import { TranspileFilesOptions } from '../types';
 const ROOT_DIR = Path.resolve(__dirname, '../..');
 
 /**
- * Transpile files in directory and write it to a directory, if no errors are thrown it completed successfully.
+ * Transpile files in directory and write it to an output directory, if no errors are thrown it completed successfully.
  * 
  * @param directory to transpile.
  * @param outputDir to write the transpiled files to.
@@ -41,6 +41,7 @@ export async function transpileFiles(directory: string, outputDir: string, optio
         exports: "auto"
     })
 
+    // Check if we should transpile all subdirs
     if(options?.recursive === true && dirs.length !== 0){
         for (const subdir of dirs) {
             const subdirPath = Path.parse(subdir);

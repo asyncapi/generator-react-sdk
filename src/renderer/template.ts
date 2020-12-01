@@ -6,6 +6,7 @@ import { TemplateContext, TemplateRenderResult } from "../types";
 /**
  * Imports a given file and return the imported component
  * 
+ * @private
  * @param filepath to import
  */
 function importComponent(filepath: string, context: TemplateContext): Promise<React.ReactElement> {
@@ -19,15 +20,18 @@ function importComponent(filepath: string, context: TemplateContext): Promise<Re
  * 
  * @param filepath the path to file to render
  */
-export async function renderTemplate(filepath: string, context: TemplateContext) {
+export async function renderTemplate(filepath: string, context: TemplateContext): Promise<TemplateRenderResult> {
   const { type, props = {} } = await importComponent(filepath, context);
 
   if (typeof type !== "function" || type.name !== "File") {
     throw new Error("File is required as first node in template!");
   }
 
-  return new TemplateRenderResult(render(props.children), {
-    fileName: props.fileName,
-    permissions: props.permissions,
-  });
+  return {
+    content: render(props.children),
+    metadata: {
+      fileName: props.fileName,
+      permissions: props.permissions,
+    }
+  };
 }

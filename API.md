@@ -5,11 +5,23 @@
 <dd><p>Component is used to describe to the generator that you want a file to be created and rendered based on the defined children.</p>
 </dd>
 <dt><a href="#Indent">Indent()</a></dt>
-<dd><p>Component is for wrapping multiple components and apply an indentation on those. </p>
+<dd><p>Component is for wrapping multiple components and apply an indentation on those.</p>
 <p>It supports any form of nested components as well, meaning you can have as many nested <code>Indent</code> components as you would like.</p>
 </dd>
 <dt><a href="#Text">Text()</a></dt>
 <dd><p>Component is for defining a group of text which should be rendered on the same line.</p>
+</dd>
+<dt><a href="#render">render(component)</a> ⇒ <code>string</code></dt>
+<dd><p>Renders given component to string</p>
+</dd>
+<dt><a href="#renderTemplate">renderTemplate(filepath)</a></dt>
+<dd><p>render a file with react. This function automatically transforms jsx to js before importing the component.</p>
+</dd>
+<dt><a href="#transpileFiles">transpileFiles(directory, outputDir, options)</a></dt>
+<dd><p>Transpile files in directory and write it to an output directory, if no errors are thrown it completed successfully.</p>
+</dd>
+<dt><a href="#getFilesInDir">getFilesInDir(dir, includeSubDirs)</a></dt>
+<dd><p>Function which finds all the files in directories</p>
 </dd>
 </dl>
 
@@ -36,8 +48,8 @@ Component is used to describe to the generator that you want a file to be create
 **Component**:   
 **Example**  
 ```js
-const name = "test.js"
-const permissions = "777"
+const fileName = "test.js"
+const permissions = 0o777
 return (
   <File size={size} type={type}>Test</File>
 )
@@ -45,7 +57,7 @@ return (
 <a name="Indent"></a>
 
 ## Indent()
-Component is for wrapping multiple components and apply an indentation on those. 
+Component is for wrapping multiple components and apply an indentation on those.
 
 It supports any form of nested components as well, meaning you can have as many nested `Indent` components as you would like.
 
@@ -56,7 +68,7 @@ It supports any form of nested components as well, meaning you can have as many 
 const size = 4
 const type = IndentationTypes.SPACES
 return (
-  <Indent size={size} type={type}>Test</Indent>
+  <Indent size={size} type={type}>test</Indent>
 )
 ```
 <a name="Text"></a>
@@ -68,9 +80,64 @@ Component is for defining a group of text which should be rendered on the same l
 **Component**:   
 **Example**  
 ```js
-const size = 4
+const indent = 4
 const type = IndentationTypes.SPACES
+const newLines = 2
 return (
-  <Text size={size} type={type}>Test</Text>
+  <Text indent={size} type={type} newLines={newLines}>Test</Text>
 )
 ```
+<a name="render"></a>
+
+## render(component) ⇒ <code>string</code>
+Renders given component to string
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| component | <code>ReactNode</code> | a given component to rendering |
+
+**Example**  
+```js
+function Component({ textProp }) {
+  return <>{textProp}</>
+}
+render(<Component textProp="someText" />)
+```
+<a name="renderTemplate"></a>
+
+## renderTemplate(filepath)
+render a file with react. This function automatically transforms jsx to js before importing the component.
+
+**Kind**: global function  
+
+| Param | Description |
+| --- | --- |
+| filepath | the path to file to render |
+
+<a name="transpileFiles"></a>
+
+## transpileFiles(directory, outputDir, options)
+Transpile files in directory and write it to an output directory, if no errors are thrown it completed successfully.
+
+**Kind**: global function  
+
+| Param | Description |
+| --- | --- |
+| directory | to transpile. |
+| outputDir | to write the transpiled files to. |
+| options | any extra options that should be passed. |
+
+<a name="getFilesInDir"></a>
+
+## getFilesInDir(dir, includeSubDirs)
+Function which finds all the files in directories
+
+**Kind**: global function  
+
+| Param | Description |
+| --- | --- |
+| dir | directory to find files in. |
+| includeSubDirs | should the function iterate through subdirectories to search for files? |
+

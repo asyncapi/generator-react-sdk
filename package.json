@@ -39,7 +39,7 @@
     "test:watch": "jest --watch",
     "docs": "npm run docs:html & npm run docs:markdown",
     "docs:html": "./node_modules/.bin/jsdoc -c jsdoc.conf.json",
-    "docs:markdown": "./node_modules/.bin/jsdoc2md src/index.js -f src/**/*.js > API.md",
+    "docs:markdown": "./node_modules/.bin/jsdoc2md lib/index.js -f lib/**/*.js > API.md",
     "lint": "eslint --max-warnings 0 --config .eslintrc .",
     "lint:fix": "eslint --max-warnings 0 --config .eslintrc . --fix"
   },
