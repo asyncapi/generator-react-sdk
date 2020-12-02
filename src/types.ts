@@ -26,7 +26,7 @@ export type TranspileFilesOptions = {
   /**
    * Should all files in a directory including those in subdirectories be included
    */
-  recursive: boolean
+  recursive?: boolean
 }
 
 export type TemplateRenderMetadata = {

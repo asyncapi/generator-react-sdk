@@ -21,6 +21,9 @@
     "isolatedModules": true,
     "jsx": "react"
   },
+  "exclude": [
+    "src/transpiler/__tests__/testfiles"
+  ],
   "include": [
     "src"
   ]

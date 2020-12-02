@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transpiler should transpile CommonJS files with a simple setup and import correctly 1`] = `
+"'use strict';
+
+/* eslint-disable no-undef */
+var React = require('react');
+
+var path = require('path'); // this weird import are only necessary because we test within the SDK itself.
+// eslint-disable-next-line security/detect-non-literal-require
+
+
+var _require = require(path.resolve(__dirname, '../../../../components')),
+    File = _require.File;
+
+function greetings(name) {
+  return \\"hello \\".concat(name);
+} // eslint-disable-next-line react/display-name
+
+
+module.exports = function () {
+  return /*#__PURE__*/React.createElement(File, null, greetings('Test'));
+};
+//# sourceMappingURL=simple.js.map
+"
+`;
+
+exports[`Transpiler should transpile ES5 files with a simple setup and import correctly 1`] = `
+"'use strict';
+
+var path = require('path');
+var React = require('react');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+
+// eslint-disable-next-line security/detect-non-literal-require, no-undef
+
+var _require = require(path__default['default'].resolve(__dirname, '../../../../components')),
+    File = _require.File;
+
+function greetings(name) {
+  return \\"hello \\".concat(name);
+} // eslint-disable-next-line react/display-name
+
+
+function simple () {
+  return /*#__PURE__*/React__default['default'].createElement(File, null, greetings('Test'));
+}
+
+module.exports = simple;
+//# sourceMappingURL=simple.js.map
+"
+`;
+
+exports[`Transpiler should transpile ES6 files with a simple setup and import correctly 1`] = `
+"'use strict';
+
+var path = require('path');
+var React = require('react');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+
+// eslint-disable-next-line security/detect-non-literal-require, no-undef
+
+var _require = require(path__default['default'].resolve(__dirname, '../../../../components')),
+    File = _require.File;
+
+var greetings = function greetings(name) {
+  return \\"hello \\".concat(name);
+}; // eslint-disable-next-line react/display-name
+
+
+function simple () {
+  return /*#__PURE__*/React__default['default'].createElement(File, null, greetings('Test'));
+}
+
+module.exports = simple;
+//# sourceMappingURL=simple.js.map
+"
+`;
