@@ -23,42 +23,42 @@ describe('Transpiler', () => {
   });
   describe('should transpile CommonJS files', () => {
     describe('with a simple setup', () => {
-      const testFile = path.resolve(outputFiles, './CommonJS/simple.js');
+      const commonjs_testFile = path.resolve(outputFiles, './CommonJS/simple.js');
       test('and import correctly', async () => {
-        const content = await readFile(testFile)
+        const content = await readFile(commonjs_testFile)
         expect(content.toString()).toMatchSnapshot();
-        expect(await import(testFile)).toBeDefined();
+        expect(await import(commonjs_testFile)).toBeDefined();
       });
       test('and render correctly', async () => {
-        const content = await renderTemplate(testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
+        const content = await renderTemplate(commonjs_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
         expect(content.content).toBe("hello Test"); 
       });
     });
   });
   describe('should transpile ES5 files', () => {
     describe('with a simple setup', () => {
-      const testFile = path.resolve(outputFiles, './ES5/simple.js');
+      const es5_testFile = path.resolve(outputFiles, './ES5/simple.js');
       test('and import correctly', async () => {
-        const content = await readFile(testFile)
+        const content = await readFile(es5_testFile)
         expect(content.toString()).toMatchSnapshot();
-        expect(await import(testFile)).toBeDefined();
+        expect(await import(es5_testFile)).toBeDefined();
       });
       test('and render correctly', async () => {
-        const content = await renderTemplate(testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
+        const content = await renderTemplate(es5_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
         expect(content.content).toBe("hello Test"); 
       });
     });
   });
   describe('should transpile ES6 files', () => {
     describe('with a simple setup', () => {
-      const testFile = path.resolve(outputFiles, './ES6/simple.js');
+      const es6_testFile = path.resolve(outputFiles, './ES6/simple.js');
       test('and import correctly', async () => {
-        const content = await readFile(testFile)
+        const content = await readFile(es6_testFile)
         expect(content.toString()).toMatchSnapshot();
-        expect(await import(testFile)).toBeDefined();
+        expect(await import(es6_testFile)).toBeDefined();
       });
       test('and render correctly', async () => {
-        const content = await renderTemplate(testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
+        const content = await renderTemplate(es6_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
         expect(content.content).toBe("hello Test"); 
       });
     });

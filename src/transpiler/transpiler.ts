@@ -31,6 +31,7 @@ export async function transpileFiles(directory: string, outputDir: string, optio
                         "@babel/preset-react"
                     ],
                 }),
+                commonjs()
             ]
         })
         await bundles.write({
