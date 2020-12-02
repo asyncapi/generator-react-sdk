@@ -1,6 +1,27 @@
 {
   "name": "@asyncapi/generator-react-sdk",
   "version": "0.1.0",
+  "description": "The React SDK for templates.",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/asyncapi/generator-react-sdk",
+  "bugs": {
+    "url": "https://github.com/asyncapi/generator-react-sdk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/asyncapi/generator-react-sdk.git"
+  },
+  "keywords": [
+    "asyncapi",
+    "documentation",
+    "generator",
+    "react",
+    "sdk",
+    "template"
+  ],
+  "author": {
+    "name": "The AsyncAPI maintainers"
+  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "dependencies": {
