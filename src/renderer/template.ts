@@ -30,7 +30,7 @@ export async function renderTemplate(filepath: string, context: TemplateContext)
   return {
     content: render(props.children),
     metadata: {
-      fileName: props.fileName,
+      fileName: props.name,
       permissions: props.permissions,
     }
   };
