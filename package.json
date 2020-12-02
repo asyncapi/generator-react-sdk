@@ -62,7 +62,7 @@
   "scripts": {
     "start": "tsc --watch",
     "build": "tsc",
-    "test": "cross-env CI=true jest",
+    "test": "cross-env CI=true jest --coverage",
     "test:watch": "jest --watch",
     "docs": "npm run docs:html & npm run docs:markdown",
     "docs:html": "./node_modules/.bin/jsdoc -c jsdoc.conf.json",

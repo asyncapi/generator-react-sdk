@@ -19,9 +19,6 @@ export enum IndentationTypes {
  * @returns {string}
  */
 export function withIndendation(content: string = '', size: number, type: IndentationTypes = IndentationTypes.SPACES): string {
-  if (typeof content !== 'string') {
-    throw new Error('Content must be a string');
-  }
   if (size < 1) {
     return content;
   }
@@ -46,9 +43,6 @@ export function withIndendation(content: string = '', size: number, type: Indent
  */
 function getIndentation(size: number, type: IndentationTypes = IndentationTypes.SPACES): string {
   const whitespaceChar = type === IndentationTypes.SPACES ? ' ' : '\t';
-  if (size !== undefined) {
-    const numberSize = Number(size);
-    return Array(numberSize).fill(whitespaceChar).join("");
-  } 
-  return '';
+  const numberSize = Number(size);
+  return Array(numberSize).fill(whitespaceChar).join("");
 }

@@ -1,5 +1,13 @@
 // eslint-disable-next-line no-undef
 module.exports = {
+  coverageReporters: [
+    'json',
+    'lcov',
+    'text'
+  ],
+  coveragePathIgnorePatterns: [
+    'src/transpiler/__tests__/__transpiled_testfiles'
+  ],
   // The root of your source code, typically /src
   // `<rootDir>` is a token Jest substitutes
   roots: ['<rootDir>/src'],
