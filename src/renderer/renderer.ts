@@ -28,7 +28,7 @@ function createElement(element: React.ReactElement): React.ReactElement | string
 
   if (typeOf === 'string') {
     // HTML (also not standard) tags case
-    throw new Error("HTML tags is not supported yet...");
+    throw new Error("HTML tags is not supported yet.");
   } else if (typeOf === 'symbol') {
     // internal React types like Fragments, Portal etc. We skip them.
     return render(element.props.children);

@@ -105,4 +105,53 @@ describe('Renderer', () => {
     const content = render(<Component />);
     expect(content).toEqual("some text");
   });
+
+  
+  test('should throws error due to using React hooks', () => {
+    function Component() {
+      const [someState, setSomeState] = React.useState();
+      return null;
+    }
+
+    let error = undefined;
+    try {
+      render(<Component />);
+    } catch(err) {
+      error = err;
+    }
+    // check substring of the desired error
+    expect((error as Error).message).toContain('Invalid hook call.');
+  });
+
+  test('should skips internal React components', () => {
+    function Component() {
+      return (
+        <React.Suspense fallback={'...loading'}>
+          some text
+        </React.Suspense>
+      )
+    }
+
+    const content = render(<Component />);
+    expect(content).toEqual("some text");
+  });
+
+  test('should throws error due to using HTML tags', () => {
+    function Component() {
+      return (
+        <div>
+          some text
+        </div>
+      )
+    }
+
+    let error = undefined;
+    try {
+      render(<Component />);
+    } catch(err) {
+      error = err;
+    }
+    // check substring of the desired error
+    expect((error as Error).message).toEqual('HTML tags is not supported yet.');
+  });
 });
