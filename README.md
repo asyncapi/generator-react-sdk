@@ -1,6 +1,12 @@
-# generator-react-sdk
-
-React SDK
+<h5 align="center">
+  <br>
+  <a href="https://www.asyncapi.org"><img src="https://github.com/asyncapi/parser-nodejs/raw/master/assets/logo.png" alt="AsyncAPI logo" width="200"></a>
+  <br>
+  AsyncAPI React SDK
+</h5>
+<p align="center">
+  <em>The official SDK to use React in your template</em>
+</p>
 
 ## Overview
 
@@ -28,4 +34,13 @@ When rendering you have the option of passing a `debug` flag which does
 
 * Does not remove the transpiled files after the rendering process is done.
 
+## Development
 
+1. Setup project by installing dependencies `npm install`
+2. Write code and tests.
+3. Make sure all tests pass `npm test`
+4. Make sure code is well formatted and secure `npm run lint`
+
+## Contributing
+
+Read [CONTRIBUTING](https://github.com/asyncapi/.github/blob/master/CONTRIBUTING.md) guide.
