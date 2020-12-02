@@ -41,8 +41,7 @@ export function withIndendation(content: string = '', size: number, type: Indent
  * @param {IndentationTypes} type the type of indendations to use. SPACES by default.
  * @returns {string}
  */
-function getIndentation(size: number, type: IndentationTypes = IndentationTypes.SPACES): string {
+function getIndentation(size: number = 0, type: IndentationTypes = IndentationTypes.SPACES): string {
   const whitespaceChar = type === IndentationTypes.SPACES ? ' ' : '\t';
-  const numberSize = Number(size);
-  return Array(numberSize).fill(whitespaceChar).join("");
+  return Array(size).fill(whitespaceChar).join("");
 }
