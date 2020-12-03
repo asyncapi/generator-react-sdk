@@ -8,9 +8,22 @@
   <em>The official SDK to use React in your template</em>
 </p>
 
-## Overview
-
 AsyncAPI React SDK is a set of components/functions to use React as render engine in the [Generator](https://github.com/asyncapi/generator).
+
+<!-- toc is generated with GitHub Actions do not remove toc markers -->
+
+<!-- toc -->
+
+- [Installation](#installation)
+- [How it works](#how-it-works)
+  * [The Transpile Process](#the-transpile-process)
+  * [The Rendering Process](#the-rendering-process)
+  * [The debug flag](#the-debug-flag)
+- [Example](#example)
+- [Development](#development)
+- [Contributing](#contributing)
+
+<!-- tocstop -->
 
 ## Installation
 
