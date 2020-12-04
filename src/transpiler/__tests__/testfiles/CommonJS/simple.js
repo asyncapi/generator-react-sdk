@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
 const React = require('react');
-const {File} = require('./../../../../../lib/components/index');
+const path = require('path');
+// this weird import are only necessary because we test within the SDK itself.
+// eslint-disable-next-line security/detect-non-literal-require
+const {File} = require(path.resolve(__dirname, '../../../../components'));
 function greetings(name) {
   return `hello ${name}`;
 }
