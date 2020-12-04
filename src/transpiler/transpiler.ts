@@ -25,6 +25,10 @@ export async function transpileFiles(directory: string, outputDir: string, optio
             plugins: [
                 babel({
                     cwd: ROOT_DIR,
+                    sourceMaps: "inline",
+                    plugins: [
+                        "source-map-support"
+                    ],
                     babelHelpers: "bundled",
                     presets: [
                         "@babel/preset-env",
