@@ -18,7 +18,7 @@
 <dd><p>render a file with react. This function automatically transforms jsx to js before importing the component.</p>
 </dd>
 <dt><a href="#transpileFiles">transpileFiles(directory, outputDir, options)</a></dt>
-<dd><p>Transpile files in directory and write it to an output directory, if no errors are thrown it completed successfully.</p>
+<dd><p>Transpile files in a given directory (and sub directory if recursive option are passed) and write it to an output directory, if no errors are thrown it completed successfully.</p>
 </dd>
 <dt><a href="#getFilesInDir">getFilesInDir(dir, includeSubDirs)</a></dt>
 <dd><p>Function which finds all the files in directories</p>
@@ -48,7 +48,7 @@ Component is used to describe to the generator that you want a file to be create
 **Component**:   
 **Example**  
 ```js
-const fileName = "test.js"
+const name = "test.js"
 const permissions = 0o777
 return (
   <File size={size} type={type}>Test</File>
@@ -119,7 +119,7 @@ render a file with react. This function automatically transforms jsx to js befor
 <a name="transpileFiles"></a>
 
 ## transpileFiles(directory, outputDir, options)
-Transpile files in directory and write it to an output directory, if no errors are thrown it completed successfully.
+Transpile files in a given directory (and sub directory if recursive option are passed) and write it to an output directory, if no errors are thrown it completed successfully.
 
 **Kind**: global function  
 
