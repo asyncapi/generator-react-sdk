@@ -19,23 +19,24 @@ const ROOT_DIR = Path.resolve(__dirname, '../..');
 export async function transpileFiles(directory: string, outputDir: string, options?: TranspileFilesOptions) {
     const {files, dirs} = await getFilesInDir(directory);
     if(files.length > 0){
+        // source-map-support is required to make error stack traces work.
+        // Be carefull about what you add to the rollup process. 
+        // Any changes to the transpiled files might screw with the sourcemap linking to wrong code.
         const bundles = await rollup({
             input: files,
             onwarn: ()=>{},
             plugins: [
                 babel({
                     cwd: ROOT_DIR,
-                    sourceMaps: "inline",
+                    babelHelpers: "bundled",
                     plugins: [
                         "source-map-support"
                     ],
-                    babelHelpers: "bundled",
                     presets: [
                         "@babel/preset-env",
                         "@babel/preset-react"
                     ],
-                }),
-                commonjs()
+                })
             ]
         })
         await bundles.write({
