@@ -20,11 +20,12 @@ function importComponent(filepath: string, context: TemplateContext): Promise<Re
  * 
  * @param filepath the path to file to render
  */
-export async function renderTemplate(filepath: string, context: TemplateContext): Promise<TemplateRenderResult> {
+export async function renderTemplate(filepath: string, context: TemplateContext): Promise<TemplateRenderResult|undefined> {
   const { type, props = {} } = await importComponent(filepath, context);
 
+  //If no File component are found as root, dont render it.
   if (typeof type !== "function" || type.name !== "File") {
-    throw new Error("File is required as first node in template!");
+    return undefined;
   }
 
   return {

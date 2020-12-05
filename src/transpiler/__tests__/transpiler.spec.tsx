@@ -31,7 +31,7 @@ describe('Transpiler', () => {
       });
       test('and render correctly', async () => {
         const content = await renderTemplate(commonjs_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
-        expect(content.content).toBe("hello Test"); 
+        expect(content?.content).toBe("hello Test"); 
       });
     });
   });
@@ -45,7 +45,7 @@ describe('Transpiler', () => {
       });
       test('and render correctly', async () => {
         const content = await renderTemplate(es5_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
-        expect(content.content).toBe("hello Test"); 
+        expect(content?.content).toBe("hello Test"); 
       });
     });
   });
@@ -59,7 +59,7 @@ describe('Transpiler', () => {
       });
       test('and render correctly', async () => {
         const content = await renderTemplate(es6_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
-        expect(content.content).toBe("hello Test"); 
+        expect(content?.content).toBe("hello Test"); 
       });
     });
   });
