@@ -27,7 +27,7 @@ export const FilePropTypes = {
  * const name = "test.js"
  * const permissions = 0o777
  * return (
- *   <File size={size} type={type}>Test</File>
+ *   <File name={name} permissions={permissions}>Test</File>
  * )
  */
 const File: FunctionComponent<FileProps> = ({ name, permissions, children }) => {

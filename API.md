@@ -51,7 +51,7 @@ Component is used to describe to the generator that you want a file to be create
 const name = "test.js"
 const permissions = 0o777
 return (
-  <File size={size} type={type}>Test</File>
+  <File name={name} permissions={permissions}>Test</File>
 )
 ```
 <a name="Indent"></a>
