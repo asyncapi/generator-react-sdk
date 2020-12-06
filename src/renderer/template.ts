@@ -1,6 +1,7 @@
 import React from "react";
 
 import { render } from "./renderer";
+import { File } from "../components";
 import { TemplateContext, TemplateRenderResult } from "../types";
 
 /**
@@ -51,7 +52,7 @@ function renderFile(file: React.ReactElement): TemplateRenderResult | undefined 
   const { type, props = {} } = file;
 
   // if no File component is found as root, don't render it.
-  if (typeof type !== "function" || type.name !== "File") {
+  if (type !== File) {
     return undefined;
   }
 
