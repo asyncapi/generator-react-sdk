@@ -35,7 +35,7 @@ export async function renderTemplate(filepath: string, context: TemplateContext)
  */
 function importComponent(filepath: string, context: TemplateContext): Promise<React.ReactElement> {
   return new Promise((resolve) => {
-    import(filepath).then(component => { resolve(component.default(context)) })
+    import(filepath).then(component => { resolve(component.default != undefined ? component.default(context) : undefined) })
   })
 }
 
