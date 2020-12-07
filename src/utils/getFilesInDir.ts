@@ -1,7 +1,8 @@
-
 import Path from 'path';
 import fs from 'fs';
 import { promisify } from 'util';
+import { isJsFile } from '../utils';
+
 const readdir = promisify(fs.readdir);
 const stat = promisify(fs.stat);
 
@@ -31,11 +32,8 @@ export async function getFilesInDir(dir: string){
         const stats = await stat(res);
         if (stats.isDirectory()) {
             dirs.push(res)
-        } else {
-            const ext = filename.split('.').pop() || '';
-            if (ALLOWED_EXTS.includes(ext)) {
-                files.push(res);
-            }
+        } else if (isJsFile(filename)) {
+            files.push(res);
         }
     }
     const resolveFilenameCallback = (filename: string) => {

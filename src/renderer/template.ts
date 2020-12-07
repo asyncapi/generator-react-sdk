@@ -2,6 +2,7 @@ import React from "react";
 
 import { render } from "./renderer";
 import { File } from "../components";
+import { isJsFile } from "../utils";
 import { TemplateContext, TemplateRenderResult } from "../types";
 
 /**
@@ -10,6 +11,9 @@ import { TemplateContext, TemplateRenderResult } from "../types";
  * @param filepath the path to file to render
  */
 export async function renderTemplate(filepath: string, context: TemplateContext): Promise<TemplateRenderResult | Array<TemplateRenderResult> | undefined> {
+  if (!isJsFile(filepath)) {
+    return undefined;
+  }
   const data = await importComponent(filepath, context);
 
   // undefined, null etc. cases
