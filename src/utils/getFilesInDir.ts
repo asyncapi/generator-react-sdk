@@ -5,6 +5,8 @@ import { promisify } from 'util';
 const readdir = promisify(fs.readdir);
 const stat = promisify(fs.stat);
 
+const ALLOWED_EXTS = ['js', 'jsx', 'cjs'];
+
 class GetFilesResponse{
     files: string[];
     dirs: string[];
@@ -26,11 +28,14 @@ export async function getFilesInDir(dir: string){
     let dirs: string[] = [];
     for (const filename of allFiles) {
         const res = Path.resolve(dir, filename);
-        const isDir = (await stat(res)).isDirectory();
-        if(isDir){
+        const stats = await stat(res);
+        if (stats.isDirectory()) {
             dirs.push(res)
-        }else{
-            files.push(res)
+        } else {
+            const ext = filename.split('.').pop() || '';
+            if (ALLOWED_EXTS.includes(ext)) {
+                files.push(res);
+            }
         }
     }
     const resolveFilenameCallback = (filename: string) => {
