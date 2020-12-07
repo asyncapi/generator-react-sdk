@@ -19,9 +19,14 @@ const ROOT_DIR = Path.resolve(__dirname, '../..');
 export async function transpileFiles(directory: string, outputDir: string, options?: TranspileFilesOptions) {
     const {files, dirs} = await getFilesInDir(directory);
     if(files.length > 0){
-        // source-map-support is required to make error stack traces work.
-        // Be carefull about what you add to the rollup process. 
-        // Any changes to the transpiled files might screw with the sourcemap linking to wrong code.
+
+        /**
+         * WHEN ADDING PLUGINS to transform the input keep in mind that 
+         * IF any of these changes the actual original content in some way
+         * the output is not able to produce accurate source map to the original file.
+         * 
+         * An example of this is using the `sourceMaps: 'inline'` configuration for the babel plugin.
+         */
         const bundles = await rollup({
             input: files,
             onwarn: ()=>{},

@@ -25,9 +25,12 @@ describe('Transpiler', () => {
   describe('should transpile CommonJS files', () => {
     describe('with a simple setup', () => {
       const commonjs_testFile = path.resolve(outputFiles, './CommonJS/simple.js');
+      const commonjs_testFileMap = path.resolve(outputFiles, './CommonJS/simple.js.map');
       test('and import correctly', async () => {
-        const content = await readFile(commonjs_testFile)
+        const content = await readFile(commonjs_testFile);
         expect(content.toString()).toMatchSnapshot();
+        const mapContent = await readFile(commonjs_testFileMap);
+        expect(mapContent.toString()).toMatchSnapshot();
         expect(await import(commonjs_testFile)).toBeDefined();
       });
       test('and render correctly', async () => {
@@ -39,9 +42,12 @@ describe('Transpiler', () => {
   describe('should transpile ES5 files', () => {
     describe('with a simple setup', () => {
       const es5_testFile = path.resolve(outputFiles, './ES5/simple.js');
+      const es5_testFileMap = path.resolve(outputFiles, './ES5/simple.js.map');
       test('and import correctly', async () => {
         const content = await readFile(es5_testFile)
         expect(content.toString()).toMatchSnapshot();
+        const mapContent = await readFile(es5_testFileMap);
+        expect(mapContent.toString()).toMatchSnapshot();
         expect(await import(es5_testFile)).toBeDefined();
       });
       test('and render correctly', async () => {
@@ -53,9 +59,12 @@ describe('Transpiler', () => {
   describe('should transpile ES6 files', () => {
     describe('with a simple setup', () => {
       const es6_testFile = path.resolve(outputFiles, './ES6/simple.js');
+      const es6_testFileMap = path.resolve(outputFiles, './ES6/simple.js.map');
       test('and import correctly', async () => {
         const content = await readFile(es6_testFile)
         expect(content.toString()).toMatchSnapshot();
+        const mapContent = await readFile(es6_testFileMap);
+        expect(mapContent.toString()).toMatchSnapshot();
         expect(await import(es6_testFile)).toBeDefined();
       });
       test('and render correctly', async () => {

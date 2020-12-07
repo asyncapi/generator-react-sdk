@@ -27,6 +27,8 @@ module.exports = function () {
 "
 `;
 
+exports[`Transpiler should transpile CommonJS files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/CommonJS/simple.js\\"],\\"sourcesContent\\":[\\"/* eslint-disable no-undef */\\\\nconst React = require('react');\\\\nconst path = require('path');\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\n// eslint-disable-next-line security/detect-non-literal-require\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\nfunction greetings(name) {\\\\n  return \`hello \${name}\`;\\\\n}\\\\n// eslint-disable-next-line react/display-name\\\\nmodule.exports = function() {\\\\n  return (\\\\n    <File>\\\\n      {greetings('Test')}\\\\n    </File>\\\\n  );\\\\n};\\"],\\"names\\":[\\"React\\",\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"module\\",\\"exports\\"],\\"mappings\\":\\";;;;AAAA;AACA,IAAMA,KAAK,GAAGC,OAAO,CAAC,OAAD,CAArB;;AACA,IAAMC,IAAI,GAAGD,OAAO,CAAC,MAAD,CAApB;AAEA;;;eACeA,OAAO,CAACC,IAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AACP,SAASC,SAAT,CAAmBC,IAAnB,EAAyB;AACvB,yBAAgBA,IAAhB;AACD;;;AAEDC,MAAM,CAACC,OAAP,GAAiB,YAAW;AAC1B,sBACE,oBAAC,IAAD,QACGH,SAAS,CAAC,MAAD,CADZ,CADF;AAKD,CAND;;\\"}"`;
+
 exports[`Transpiler should transpile ES5 files with a simple setup and import correctly 1`] = `
 "'use strict';
 
@@ -58,6 +60,8 @@ module.exports = simple;
 "
 `;
 
+exports[`Transpiler should transpile ES5 files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/ES5/simple.js\\"],\\"sourcesContent\\":[\\"import path from 'path';\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\n// eslint-disable-next-line security/detect-non-literal-require, no-undef\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\nimport React from 'react';\\\\nfunction greetings(name) {\\\\n  return \`hello \${name}\`;\\\\n}\\\\n// eslint-disable-next-line react/display-name\\\\nexport default function() {\\\\n  return (\\\\n    <File>\\\\n      {greetings('Test')}\\\\n    </File>\\\\n  );\\\\n}\\"],\\"names\\":[\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"React\\"],\\"mappings\\":\\";;;;;;;;;;;AAEA;;eACeA,OAAO,CAACC,wBAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AAEP,SAASC,SAAT,CAAmBC,IAAnB,EAAyB;AACvB,yBAAgBA,IAAhB;AACD;;;AAEc,mBAAW;AACxB,sBACEC,wCAAC,IAAD,QACGF,SAAS,CAAC,MAAD,CADZ,CADF;AAKD;;;;\\"}"`;
+
 exports[`Transpiler should transpile ES6 files with a simple setup and import correctly 1`] = `
 "'use strict';
 
@@ -80,7 +84,9 @@ var greetings = function greetings(name) {
 }; // eslint-disable-next-line react/display-name
 
 
-function simple () {
+function simple (asyncapi) {
+  // eslint-disable-next-line no-unused-vars
+  var t = asyncapi.test.test;
   return /*#__PURE__*/React__default['default'].createElement(File, null, greetings('Test'));
 }
 
@@ -88,3 +94,5 @@ module.exports = simple;
 //# sourceMappingURL=simple.js.map
 "
 `;
+
+exports[`Transpiler should transpile ES6 files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/ES6/simple.js\\"],\\"sourcesContent\\":[\\"import path from 'path';\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\n// eslint-disable-next-line security/detect-non-literal-require, no-undef\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\nimport React from 'react';\\\\nconst greetings = name => \`hello \${name}\`;\\\\n// eslint-disable-next-line react/display-name\\\\nexport default function(asyncapi) {\\\\n  // eslint-disable-next-line no-unused-vars\\\\n  const t = asyncapi.test.test;\\\\n  return (\\\\n    <File>\\\\n      {greetings('Test')}\\\\n    </File>\\\\n  );\\\\n}\\"],\\"names\\":[\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"asyncapi\\",\\"t\\",\\"test\\",\\"React\\"],\\"mappings\\":\\";;;;;;;;;;;AAEA;;eACeA,OAAO,CAACC,wBAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AAEP,IAAMC,SAAS,GAAG,SAAZA,SAAY,CAAAC,IAAI;AAAA,yBAAaA,IAAb;AAAA,CAAtB;;;AAEe,iBAASC,QAAT,EAAmB;AAChC;AACA,MAAMC,CAAC,GAAGD,QAAQ,CAACE,IAAT,CAAcA,IAAxB;AACA,sBACEC,wCAAC,IAAD,QACGL,SAAS,CAAC,MAAD,CADZ,CADF;AAKD;;;;\\"}"`;
