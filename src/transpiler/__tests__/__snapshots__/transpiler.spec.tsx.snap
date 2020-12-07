@@ -84,9 +84,7 @@ var greetings = function greetings(name) {
 }; // eslint-disable-next-line react/display-name
 
 
-function simple (asyncapi) {
-  // eslint-disable-next-line no-unused-vars
-  var t = asyncapi.test.test;
+function simple () {
   return /*#__PURE__*/React__default['default'].createElement(File, null, greetings('Test'));
 }
 
@@ -95,4 +93,4 @@ module.exports = simple;
 "
 `;
 
-exports[`Transpiler should transpile ES6 files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/ES6/simple.js\\"],\\"sourcesContent\\":[\\"import path from 'path';\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\n// eslint-disable-next-line security/detect-non-literal-require, no-undef\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\nimport React from 'react';\\\\nconst greetings = name => \`hello \${name}\`;\\\\n// eslint-disable-next-line react/display-name\\\\nexport default function(asyncapi) {\\\\n  // eslint-disable-next-line no-unused-vars\\\\n  const t = asyncapi.test.test;\\\\n  return (\\\\n    <File>\\\\n      {greetings('Test')}\\\\n    </File>\\\\n  );\\\\n}\\"],\\"names\\":[\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"asyncapi\\",\\"t\\",\\"test\\",\\"React\\"],\\"mappings\\":\\";;;;;;;;;;;AAEA;;eACeA,OAAO,CAACC,wBAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AAEP,IAAMC,SAAS,GAAG,SAAZA,SAAY,CAAAC,IAAI;AAAA,yBAAaA,IAAb;AAAA,CAAtB;;;AAEe,iBAASC,QAAT,EAAmB;AAChC;AACA,MAAMC,CAAC,GAAGD,QAAQ,CAACE,IAAT,CAAcA,IAAxB;AACA,sBACEC,wCAAC,IAAD,QACGL,SAAS,CAAC,MAAD,CADZ,CADF;AAKD;;;;\\"}"`;
+exports[`Transpiler should transpile ES6 files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/ES6/simple.js\\"],\\"sourcesContent\\":[\\"import path from 'path';\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\n// eslint-disable-next-line security/detect-non-literal-require, no-undef\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\nimport React from 'react';\\\\nconst greetings = name => \`hello \${name}\`;\\\\n// eslint-disable-next-line react/display-name\\\\nexport default function() {\\\\n  return (\\\\n    <File>\\\\n      {greetings('Test')}\\\\n    </File>\\\\n  );\\\\n}\\"],\\"names\\":[\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"React\\"],\\"mappings\\":\\";;;;;;;;;;;AAEA;;eACeA,OAAO,CAACC,wBAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AAEP,IAAMC,SAAS,GAAG,SAAZA,SAAY,CAAAC,IAAI;AAAA,yBAAaA,IAAb;AAAA,CAAtB;;;AAEe,mBAAW;AACxB,sBACEC,wCAAC,IAAD,QACGF,SAAS,CAAC,MAAD,CADZ,CADF;AAKD;;;;\\"}"`;
