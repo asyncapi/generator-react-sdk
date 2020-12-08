@@ -10,7 +10,7 @@ import { TemplateContext, TemplateRenderResult } from "../types";
  * 
  * @param filepath the path to file to render
  */
-export async function renderTemplate(filepath: string, context: TemplateContext): Promise<TemplateRenderResult | Array<TemplateRenderResult> | undefined> {
+export async function renderTemplate(filepath: string, context: TemplateContext): Promise<TemplateRenderResult | undefined> {
   if (!isJsFile(filepath)) {
     return undefined;
   }
@@ -20,14 +20,6 @@ export async function renderTemplate(filepath: string, context: TemplateContext)
   if (!data) {
     return undefined;
   }
-
-  // array of File components case
-  if (Array.isArray(data)) {
-    const files = data.map(singleFile => renderFile(singleFile)).filter(Boolean) as Array<TemplateRenderResult>;
-    if (!files.length) return undefined;
-    return files;
-  }
-  // File component as root case
   return renderFile(data);
 }
 
@@ -39,7 +31,7 @@ export async function renderTemplate(filepath: string, context: TemplateContext)
  */
 function importComponent(filepath: string, context: TemplateContext): Promise<React.ReactElement> {
   return new Promise((resolve) => {
-    import(filepath).then(component => { resolve(component.default != undefined ? component.default(context) : undefined) })
+    import(filepath).then(component => { resolve(component.default !== undefined ? component.default(context) : undefined) })
   })
 }
 
