@@ -63,12 +63,13 @@
     "build": "tsc",
     "test": "cross-env CI=true jest --coverage",
     "test:watch": "jest --watch",
-    "docs": "npm run docs:html & npm run docs:markdown",
+    "docs": "npm run docs:html & npm run docs:markdown & npm run docs:readme-toc",
     "docs:html": "./node_modules/.bin/jsdoc -c jsdoc.conf.json",
     "docs:markdown": "./node_modules/.bin/jsdoc2md lib/index.js -f lib/**/*.js > API.md",
     "docs:readme-toc": "markdown-toc -i README.md",
     "lint": "eslint --max-warnings 0 --config .eslintrc .",
     "lint:fix": "eslint --max-warnings 0 --config .eslintrc . --fix",
+    "get-version": "echo $npm_package_version",
     "release": "semantic-release"
   },
   "eslintConfig": {
@@ -97,12 +98,7 @@
           "preset": "conventionalcommits"
         }
       ],
-      [
-        "@semantic-release/npm",
-        {
-          "pkgRoot": "library"
-        }
-      ],
+      "@semantic-release/npm",
       "@semantic-release/github"
     ]
   }
