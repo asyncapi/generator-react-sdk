@@ -3,3 +3,4 @@ node_modules
 coverage
 lib
 src/transpiler/__tests__/__transpiled_testfiles
+docs
