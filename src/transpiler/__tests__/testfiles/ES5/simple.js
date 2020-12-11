@@ -2,7 +2,6 @@ import path from 'path';
 // this weird import are only necessary because we test within the SDK itself.
 // eslint-disable-next-line security/detect-non-literal-require, no-undef
 const {File} = require(path.resolve(__dirname, '../../../../components'));
-import React from 'react';
 function greetings(name) {
   return `hello ${name}`;
 }

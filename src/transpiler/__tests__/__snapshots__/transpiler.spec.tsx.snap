@@ -3,11 +3,10 @@
 exports[`Transpiler should transpile CommonJS files with a simple setup and import correctly 1`] = `
 "'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 require('source-map-support/register');
 
 /* eslint-disable no-undef */
-var React = require('react');
-
 var path = require('path'); // this weird import are only necessary because we test within the SDK itself.
 // eslint-disable-next-line security/detect-non-literal-require
 
@@ -21,25 +20,26 @@ function greetings(name) {
 
 
 module.exports = function () {
-  return /*#__PURE__*/React.createElement(File, null, greetings('Test'));
+  return /*#__PURE__*/jsxRuntime.jsx(File, {
+    children: greetings('Test')
+  });
 };
 //# sourceMappingURL=simple.js.map
 "
 `;
 
-exports[`Transpiler should transpile CommonJS files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/CommonJS/simple.js\\"],\\"sourcesContent\\":[\\"/* eslint-disable no-undef */\\\\nconst React = require('react');\\\\nconst path = require('path');\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\n// eslint-disable-next-line security/detect-non-literal-require\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\nfunction greetings(name) {\\\\n  return \`hello \${name}\`;\\\\n}\\\\n// eslint-disable-next-line react/display-name\\\\nmodule.exports = function() {\\\\n  return (\\\\n    <File>\\\\n      {greetings('Test')}\\\\n    </File>\\\\n  );\\\\n};\\"],\\"names\\":[\\"React\\",\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"module\\",\\"exports\\"],\\"mappings\\":\\";;;;AAAA;AACA,IAAMA,KAAK,GAAGC,OAAO,CAAC,OAAD,CAArB;;AACA,IAAMC,IAAI,GAAGD,OAAO,CAAC,MAAD,CAApB;AAEA;;;eACeA,OAAO,CAACC,IAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AACP,SAASC,SAAT,CAAmBC,IAAnB,EAAyB;AACvB,yBAAgBA,IAAhB;AACD;;;AAEDC,MAAM,CAACC,OAAP,GAAiB,YAAW;AAC1B,sBACE,oBAAC,IAAD,QACGH,SAAS,CAAC,MAAD,CADZ,CADF;AAKD,CAND;;\\"}"`;
+exports[`Transpiler should transpile CommonJS files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/CommonJS/simple.js\\"],\\"sourcesContent\\":[\\"/* eslint-disable no-undef */\\\\r\\\\nconst path = require('path');\\\\r\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\r\\\\n// eslint-disable-next-line security/detect-non-literal-require\\\\r\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\r\\\\nfunction greetings(name) {\\\\r\\\\n  return \`hello \${name}\`;\\\\r\\\\n}\\\\r\\\\n// eslint-disable-next-line react/display-name\\\\r\\\\nmodule.exports = function() {\\\\r\\\\n  return (\\\\r\\\\n    <File>\\\\r\\\\n      {greetings('Test')}\\\\r\\\\n    </File>\\\\r\\\\n  );\\\\r\\\\n};\\"],\\"names\\":[\\"path\\",\\"require\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"module\\",\\"exports\\",\\"_jsx\\"],\\"mappings\\":\\";;;;;AAAA;AACA,IAAMA,IAAI,GAAGC,OAAO,CAAC,MAAD,CAApB;AAEA;;;eACeA,OAAO,CAACD,IAAI,CAACE,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AACP,SAASC,SAAT,CAAmBC,IAAnB,EAAyB;AACvB,yBAAgBA,IAAhB;AACD;;;AAEDC,MAAM,CAACC,OAAP,GAAiB,YAAW;AAC1B,sBACEC,eAAC,IAAD;AAAA,cACGJ,SAAS,CAAC,MAAD;AADZ,IADF;AAKD,CAND;;\\"}"`;
 
 exports[`Transpiler should transpile ES5 files with a simple setup and import correctly 1`] = `
 "'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 require('source-map-support/register');
 var path = require('path');
-var React = require('react');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
-var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 // eslint-disable-next-line security/detect-non-literal-require, no-undef
 
@@ -52,7 +52,9 @@ function greetings(name) {
 
 
 function simple () {
-  return /*#__PURE__*/React__default['default'].createElement(File, null, greetings('Test'));
+  return /*#__PURE__*/jsxRuntime.jsx(File, {
+    children: greetings('Test')
+  });
 }
 
 module.exports = simple;
@@ -60,19 +62,18 @@ module.exports = simple;
 "
 `;
 
-exports[`Transpiler should transpile ES5 files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/ES5/simple.js\\"],\\"sourcesContent\\":[\\"import path from 'path';\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\n// eslint-disable-next-line security/detect-non-literal-require, no-undef\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\nimport React from 'react';\\\\nfunction greetings(name) {\\\\n  return \`hello \${name}\`;\\\\n}\\\\n// eslint-disable-next-line react/display-name\\\\nexport default function() {\\\\n  return (\\\\n    <File>\\\\n      {greetings('Test')}\\\\n    </File>\\\\n  );\\\\n}\\"],\\"names\\":[\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"React\\"],\\"mappings\\":\\";;;;;;;;;;;AAEA;;eACeA,OAAO,CAACC,wBAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AAEP,SAASC,SAAT,CAAmBC,IAAnB,EAAyB;AACvB,yBAAgBA,IAAhB;AACD;;;AAEc,mBAAW;AACxB,sBACEC,wCAAC,IAAD,QACGF,SAAS,CAAC,MAAD,CADZ,CADF;AAKD;;;;\\"}"`;
+exports[`Transpiler should transpile ES5 files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/ES5/simple.js\\"],\\"sourcesContent\\":[\\"import path from 'path';\\\\r\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\r\\\\n// eslint-disable-next-line security/detect-non-literal-require, no-undef\\\\r\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\r\\\\nfunction greetings(name) {\\\\r\\\\n  return \`hello \${name}\`;\\\\r\\\\n}\\\\r\\\\n// eslint-disable-next-line react/display-name\\\\r\\\\nexport default function() {\\\\r\\\\n  return (\\\\r\\\\n    <File>\\\\r\\\\n      {greetings('Test')}\\\\r\\\\n    </File>\\\\r\\\\n  );\\\\r\\\\n}\\"],\\"names\\":[\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"_jsx\\"],\\"mappings\\":\\";;;;;;;;;;AAEA;;eACeA,OAAO,CAACC,wBAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AACP,SAASC,SAAT,CAAmBC,IAAnB,EAAyB;AACvB,yBAAgBA,IAAhB;AACD;;;AAEc,mBAAW;AACxB,sBACEC,eAAC,IAAD;AAAA,cACGF,SAAS,CAAC,MAAD;AADZ,IADF;AAKD;;;;\\"}"`;
 
 exports[`Transpiler should transpile ES6 files with a simple setup and import correctly 1`] = `
 "'use strict';
 
+var jsxRuntime = require('react/jsx-runtime');
 require('source-map-support/register');
 var path = require('path');
-var React = require('react');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
-var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
 // eslint-disable-next-line security/detect-non-literal-require, no-undef
 
@@ -85,7 +86,9 @@ var greetings = function greetings(name) {
 
 
 function simple () {
-  return /*#__PURE__*/React__default['default'].createElement(File, null, greetings('Test'));
+  return /*#__PURE__*/jsxRuntime.jsx(File, {
+    children: greetings('Test')
+  });
 }
 
 module.exports = simple;
@@ -93,4 +96,4 @@ module.exports = simple;
 "
 `;
 
-exports[`Transpiler should transpile ES6 files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/ES6/simple.js\\"],\\"sourcesContent\\":[\\"import path from 'path';\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\n// eslint-disable-next-line security/detect-non-literal-require, no-undef\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\nimport React from 'react';\\\\nconst greetings = name => \`hello \${name}\`;\\\\n// eslint-disable-next-line react/display-name\\\\nexport default function() {\\\\n  return (\\\\n    <File>\\\\n      {greetings('Test')}\\\\n    </File>\\\\n  );\\\\n}\\"],\\"names\\":[\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"React\\"],\\"mappings\\":\\";;;;;;;;;;;AAEA;;eACeA,OAAO,CAACC,wBAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AAEP,IAAMC,SAAS,GAAG,SAAZA,SAAY,CAAAC,IAAI;AAAA,yBAAaA,IAAb;AAAA,CAAtB;;;AAEe,mBAAW;AACxB,sBACEC,wCAAC,IAAD,QACGF,SAAS,CAAC,MAAD,CADZ,CADF;AAKD;;;;\\"}"`;
+exports[`Transpiler should transpile ES6 files with a simple setup and import correctly 2`] = `"{\\"version\\":3,\\"file\\":\\"simple.js\\",\\"sources\\":[\\"../../testfiles/ES6/simple.js\\"],\\"sourcesContent\\":[\\"import path from 'path';\\\\r\\\\n// this weird import are only necessary because we test within the SDK itself.\\\\r\\\\n// eslint-disable-next-line security/detect-non-literal-require, no-undef\\\\r\\\\nconst {File} = require(path.resolve(__dirname, '../../../../components'));\\\\r\\\\nconst greetings = name => \`hello \${name}\`;\\\\r\\\\n// eslint-disable-next-line react/display-name\\\\r\\\\nexport default function() {\\\\r\\\\n  return (\\\\r\\\\n    <File>\\\\r\\\\n      {greetings('Test')}\\\\r\\\\n    </File>\\\\r\\\\n  );\\\\r\\\\n}\\"],\\"names\\":[\\"require\\",\\"path\\",\\"resolve\\",\\"__dirname\\",\\"File\\",\\"greetings\\",\\"name\\",\\"_jsx\\"],\\"mappings\\":\\";;;;;;;;;;AAEA;;eACeA,OAAO,CAACC,wBAAI,CAACC,OAAL,CAAaC,SAAb,EAAwB,wBAAxB,CAAD;IAAfC,gBAAAA;;AACP,IAAMC,SAAS,GAAG,SAAZA,SAAY,CAAAC,IAAI;AAAA,yBAAaA,IAAb;AAAA,CAAtB;;;AAEe,mBAAW;AACxB,sBACEC,eAAC,IAAD;AAAA,cACGF,SAAS,CAAC,MAAD;AADZ,IADF;AAKD;;;;\\"}"`;

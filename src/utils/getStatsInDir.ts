@@ -1,29 +1,27 @@
 import Path from 'path';
 import fs from 'fs';
 import { promisify } from 'util';
-import { isJsFile } from '../utils';
+import { isJsFile } from '.';
 
 const readdir = promisify(fs.readdir);
 const stat = promisify(fs.stat);
 
-const ALLOWED_EXTS = ['js', 'jsx', 'cjs'];
-
 class GetFilesResponse{
     files: string[];
     dirs: string[];
-    constructor(files: string[], dirs: string[]){
+    constructor (files: string[], dirs: string[]) {
         this.files = files;
         this.dirs = dirs;
     }
 }
 
 /**
- * Function which finds all the files in directories
- * 
- * @param dir directory to find files in.
- * @param includeSubDirs should the function iterate through subdirectories to search for files?
+ * Function which finds all the files and dirs in folders
+ * @private
+ * @param dir directory to find files and dirs in.
+ * @param includeSubDirs should the function iterate through subdirectories to search for files and dirs?
  */
-export async function getFilesInDir(dir: string){
+export async function getStatsInDir(dir: string){
     const allFiles = await readdir(dir);
     let files: string[] = [];
     let dirs: string[] = [];

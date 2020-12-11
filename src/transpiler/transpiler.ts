@@ -3,7 +3,7 @@ import Path from 'path';
 import { rollup } from 'rollup';
 import babel from '@rollup/plugin-babel';
 
-import { getFilesInDir } from '../utils';
+import { getStatsInDir } from '../utils';
 import { TranspileFilesOptions } from '../types';
 
 const ROOT_DIR = Path.resolve(__dirname, '../..');
@@ -16,9 +16,8 @@ const ROOT_DIR = Path.resolve(__dirname, '../..');
  * @param options any extra options that should be passed.
  */
 export async function transpileFiles(directory: string, outputDir: string, options?: TranspileFilesOptions) {
-    const {files, dirs} = await getFilesInDir(directory);
-    if(files.length > 0){
-
+    const { files, dirs } = await getStatsInDir(directory);
+    if (files.length) {
         /**
          * WHEN ADDING PLUGINS to transform the input keep in mind that 
          * IF any of these changes the actual original content in some way
@@ -38,7 +37,9 @@ export async function transpileFiles(directory: string, outputDir: string, optio
                     ],
                     presets: [
                         "@babel/preset-env",
-                        "@babel/preset-react"
+                        ["@babel/preset-react", {
+                            runtime: "automatic",
+                        }],
                     ],
                 })
             ]
@@ -52,7 +53,7 @@ export async function transpileFiles(directory: string, outputDir: string, optio
     }
 
     // Check if we should transpile all subdirs
-    if(options?.recursive === true && dirs.length > 0){
+    if (options?.recursive === true && dirs.length > 0) {
         for (const subdir of dirs) {
             const subdirPath = Path.parse(subdir);
             await transpileFiles(subdir, Path.resolve(outputDir, subdirPath.base), options);

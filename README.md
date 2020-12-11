@@ -60,7 +60,6 @@ When rendering you have the option of passing a `debug` flag which does
 ## Example
 
 ```js
-import React from 'react';
 import { Text, Indent, IndentationTypes, render } from '@asyncapi/generator-react-sdk';
 
 class ClassComponent extends React.Component {
@@ -91,8 +90,6 @@ function FunctionComponent() {
 // content will be `\t\t\tindented text text wrapped by custom component\n\n`
 const content = render(<FunctionComponent />);
 ```
-
-If you want to see a complex example, check [`markdown-template`](https://github.com/asyncapi/markdown-template).
 
 ## Development
 
