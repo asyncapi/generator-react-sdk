@@ -24,6 +24,11 @@
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "/lib",
+    "./README.md",
+    "./LICENSE"
+  ],
   "dependencies": {
     "@asyncapi/parser": "^1.2.0",
     "@babel/core": "7.12.9",
