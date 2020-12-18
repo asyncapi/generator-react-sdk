@@ -89,6 +89,13 @@ function FunctionComponent() {
 const content = render(<FunctionComponent />);
 ```
 
+## Resources
+
+- [`template-for-generator-templates`](https://github.com/asyncapi/template-for-generator-templates) - template, which is worth checking when you want to write your first template in `React`. It shows how to write template, reusable parts (components), what are the recommended patterns, shows the [Generator](https://github.com/asyncapi/generator) features and has simple and complex examples using `React`.
+- [`markdown-template`](https://github.com/asyncapi/markdown-template) - template fully written in `React`. Generates documentation in Markdown file.
+
+Also, remember that you can join us in [Slack](https://www.asyncapi.com/slack-invite/).
+
 ## Development
 
 1. Setup project by installing dependencies `npm install`
