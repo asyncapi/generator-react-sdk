@@ -20,6 +20,7 @@ AsyncAPI React SDK is a set of components/functions to use React as render engin
   * [The Rendering Process](#the-rendering-process)
   * [The debug flag](#the-debug-flag)
 - [Example](#example)
+- [Resources](#resources)
 - [Development](#development)
 - [Contributing](#contributing)
 
@@ -91,7 +92,7 @@ const content = render(<FunctionComponent />);
 
 ## Resources
 
-- [`template-for-generator-templates`](https://github.com/asyncapi/template-for-generator-templates) - template, which is worth checking when you want to write your first template in `React`. It shows how to write template, reusable parts (components), what are the recommended patterns, shows the [Generator](https://github.com/asyncapi/generator) features and has simple and complex examples using `React`.
+- [`template-for-generator-templates`](https://github.com/asyncapi/template-for-generator-templates) - template for templates. It is worth checking when you want to write your first template in `React`. It shows how to write template, reusable parts (components), what are the recommended patterns, shows the [Generator](https://github.com/asyncapi/generator) features and has simple and complex examples using `React`.
 - [`markdown-template`](https://github.com/asyncapi/markdown-template) - template fully written in `React`. Generates documentation in Markdown file.
 
 Also, remember that you can join us in [Slack](https://www.asyncapi.com/slack-invite/).
