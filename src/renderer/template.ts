@@ -44,7 +44,6 @@ function importComponent(filepath: string, context: TemplateContext): Promise<Re
       delete require.cache[require.resolve(filepath)];
 
       const component = require(filepath);
-      if (!component) resolve(undefined);
       if (typeof component === "function") resolve(component(context));
       if (typeof component.default === "function") resolve(component.default(context));
       resolve(undefined);
