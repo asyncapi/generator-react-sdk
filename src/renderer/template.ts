@@ -18,8 +18,7 @@ export async function renderTemplate(filepath: string, context: TemplateContext)
   try {
     data = await importComponent(filepath, context);
   } catch(err) {
-    console.error(err);
-    return undefined;
+    throw err;
   }
 
   // undefined, null etc. cases
