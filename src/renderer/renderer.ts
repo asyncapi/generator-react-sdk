@@ -1,3 +1,4 @@
+import { PROVIDER_SYMBOL } from "../constants";
 import { PropsWithChildrenContent } from "../types";
 
 /**
@@ -43,7 +44,14 @@ function createElement(element: React.ReactElement): React.ReactElement | string
       return createElement(clazzComp.render());
     }
     // Function component case
-    return createElement(type(normalizeProps(element.props)));
+    switch(type.$$typeof) {
+      case PROVIDER_SYMBOL: {
+        return createElement(type(element.props));
+      }
+      default: {
+        return createElement(type(normalizeProps(element.props)));
+      }
+    }
   }
 
   return element || "";
