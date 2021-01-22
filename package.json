@@ -66,7 +66,7 @@
     "build": "tsc",
     "test": "cross-env CI=true jest --coverage",
     "test:watch": "jest --watch",
-    "docs": "npm run docs:markdown & npm run generate:readme-toc",
+    "docs": "npm run docs:markdown & npm run generate:readme:toc",
     "docs:markdown": "./node_modules/.bin/jsdoc2md lib/index.js -f lib/**/*.js > API.md",
     "lint": "eslint --max-warnings 0 --config .eslintrc .",
     "lint:fix": "eslint --max-warnings 0 --config .eslintrc . --fix",
@@ -74,7 +74,7 @@
     "get:name": "echo $npm_package_name",
     "release": "semantic-release",
     "generate:assets": "npm run docs",
-    "generate:readme-toc": "markdown-toc -i README.md",
+    "generate:readme:toc": "markdown-toc -i README.md",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
   },
   "eslintConfig": {
