@@ -79,5 +79,5 @@ describe('Transpiler', () => {
   We need to remove `\r` from files transpiled on windows before we can match them with the snapshot generated on unix
 */
 function switchToUnixLinebreaks(str: String) {
-  return str.replace(/\r/g, "")
+  return str.replace(/\\r/g, "")
 }
