@@ -1,7 +1,8 @@
-const ALLOWED_EXTS = ['js', 'jsx', 'cjs'];
+const ALLOWED_EXTS = ['js', 'jsx', 'cjs', 'tsx'];
 
 /**
- * Function which checks if file is JS file
+ * Function which checks if file is JS file that supports JSX syntax
+ * 
  * @private
  * @param {string} filename
  * @returns {boolean}
