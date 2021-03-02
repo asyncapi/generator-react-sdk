@@ -1,12 +1,15 @@
 import Path from 'path';
 
 import { rollup } from 'rollup';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
 
 import { getStatsInDir } from '../utils';
 import { TranspileFilesOptions } from '../types';
 
 const ROOT_DIR = Path.resolve(__dirname, '../..');
+const extensions = ['.js', '.jsx', '.cjs', '.tsx'];
 
 /**
  * Transpile files in a given directory (and sub directory if recursive option are passed) and write it to an output directory,
