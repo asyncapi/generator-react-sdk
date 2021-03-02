@@ -6,7 +6,7 @@ describe('renderTemplate', () => {
   test('should render a single File template', async () => {
     const filePath = path.resolve(__dirname, './file-tests/single-template.js');
     const renderedContent = await renderTemplate(filePath, {} as any) as TemplateRenderResult;
-    
+
     expect(typeof renderedContent).toEqual('object');
     expect(renderedContent.content).toEqual('Content');
     expect(renderedContent.metadata.fileName).toEqual('file.html');
