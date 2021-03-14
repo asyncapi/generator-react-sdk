@@ -37,7 +37,7 @@ export async function transpileFiles(directory: string, outputDir: string, optio
                     ],
                     presets: [
                         ["@babel/preset-env", {
-                            targets: { node: "14.16" },
+                            targets: { node: "12.16" },
                         }],
                         ["@babel/preset-react", {
                             runtime: "automatic",
