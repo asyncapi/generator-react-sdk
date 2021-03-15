@@ -42,6 +42,10 @@ The process of creating content from React components consists of two main proce
 
 The SDK has a custom transpiler which ensures that any directory are transpiled using [Rollup](https://www.npmjs.com/package/rollup). Rollup helps bundling all dependencies and transpile them into CommonJS modules. This is required because this library will be used through NodeJS which does not understand these new modules natively and we do not want to limit the developer in which syntax they prefer nor how they want to separate code.
 
+#### Requirements for transpilation
+
+* Node.js v12.16 and higher
+
 ### The Rendering Process
 
 SDK has its own reconciler for React components. It traverses through each element in the template structure and transforms it into a pure string. Additionally, prop `children` is also converted to a regular string and stored in the` childrenContent` prop, which is appended to each component. See [example](#example).
