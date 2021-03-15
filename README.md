@@ -26,10 +26,6 @@ AsyncAPI React SDK is a set of components/functions to use React as render engin
 
 <!-- tocstop -->
 
-## Requirements
-
-* Node.js v12.16 and higher
-
 ## Installation
 
 Run this command to install the SDK in your project:
@@ -55,6 +51,12 @@ Restrictions:
 - React hooks is not allowed.
 - HTML tags at the moment is not supported.
 - React internal components like Fragments, Suspense etc. are skipped.
+
+#### Requirements
+
+To render the transpiled template SDK requires:
+
+* Node.js v12.16 and higher
 
 ## The debug flag
 
