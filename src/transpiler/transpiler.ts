@@ -1,8 +1,7 @@
 import Path from 'path';
 
 import { rollup } from 'rollup';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 import babel from '@rollup/plugin-babel';
 
 import { getStatsInDir } from '../utils';
@@ -20,35 +19,35 @@ const extensions = ['.js', '.jsx', '.cjs', '.tsx'];
  * @param options any extra options that should be passed.
  */
 export async function transpileFiles(directory: string, outputDir: string, options?: TranspileFilesOptions) {
-    const { files, dirs } = await getStatsInDir(directory);
-    if (files.length) {
-        /**
-         * WHEN ADDING PLUGINS to transform the input keep in mind that 
-         * IF any of these changes the actual original content in some way
-         * the output is not able to produce accurate source map to the original file.
-         * 
-         * An example of this is using the `sourceMaps: 'inline'` configuration for the babel plugin.
-         */
-        const bundles = await rollup({
-            input: files,
-            onwarn: () => {},
-            plugins: [
-                babel({
-                    cwd: ROOT_DIR,
-                    babelHelpers: "bundled",
-                    plugins: [
-                        "source-map-support",
-                    ],
-                    presets: [
-                        ["@babel/preset-env", {
-                            targets: { node: "12.16" },
-                        }],
-                        ["@babel/preset-react", {
-                            runtime: "automatic",
-                        }],
-                    ],
-                })
-            ]
+  const { files, dirs } = await getStatsInDir(directory);
+    
+  if (files.length) {
+    /**
+     * WHEN ADDING PLUGINS to transform the input keep in mind that 
+     * IF any of these changes the actual original content in some way
+     * the output is not able to produce accurate source map to the original file.
+     * 
+     * An example of this is using the `sourceMaps: 'inline'` configuration for the babel plugin.
+     */
+    const bundles = await rollup({
+      input: files,
+      onwarn: () => {},
+      plugins: [
+        typescript(),
+        babel({
+          cwd: ROOT_DIR,
+          babelHelpers: "bundled",
+          plugins: [
+            "source-map-support",
+          ],
+          presets: [
+            ["@babel/preset-env", {
+              targets: { node: "12.16" },
+            }],
+            ["@babel/preset-react", {
+              runtime: "automatic",
+            }],
+          ],
         })
       ]
     });
