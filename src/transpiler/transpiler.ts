@@ -41,7 +41,6 @@ export async function transpileFiles(directory: string, outputDir: string, optio
                         }],
                         ["@babel/preset-react", {
                             runtime: "automatic",
-                            importSource: process.env.NODE_ENV === 'test' ? 'react' : "@asyncapi/generator-react-sdk/lib",
                         }],
                     ],
                 })
@@ -51,7 +50,10 @@ export async function transpileFiles(directory: string, outputDir: string, optio
             format: "commonjs",
             sourcemap: true,
             dir: outputDir,
-            exports: "auto"
+            exports: "auto",
+            paths: {
+              'react/jsx-runtime': 'react/cjs/react-jsx-runtime.production.min',
+            }
         })
     }
 
