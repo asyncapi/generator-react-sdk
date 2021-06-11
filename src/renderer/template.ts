@@ -5,7 +5,7 @@ import { isJsFile } from "../utils";
 import { TemplateContext, TemplateFunction, TemplateRenderResult } from "../types";
 
 /**
- * render a file with react. This function automatically transforms jsx to js before importing the component.
+ * Render a file with React.
  * 
  * @param filepath the path to file to render
  */
