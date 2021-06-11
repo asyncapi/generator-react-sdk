@@ -41,6 +41,7 @@ export async function transpileFiles(directory: string, outputDir: string, optio
                         }],
                         ["@babel/preset-react", {
                             runtime: "automatic",
+                            importSource: "@asyncapi/generator-react-sdk/lib",
                         }],
                     ],
                 })
