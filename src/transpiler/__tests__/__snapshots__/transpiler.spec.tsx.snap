@@ -46,7 +46,7 @@ var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 
 const {
   File
-} = require(path__default['default'].resolve(__dirname, '../../../../components'));
+} = require(path__default[\\"default\\"].resolve(__dirname, '../../../../components'));
 
 function greetings(name) {
   return \`hello \${name}\`;
@@ -81,7 +81,7 @@ var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 
 const {
   File
-} = require(path__default['default'].resolve(__dirname, '../../../../components'));
+} = require(path__default[\\"default\\"].resolve(__dirname, '../../../../components'));
 
 const greetings = name => \`hello \${name}\`; // eslint-disable-next-line react/display-name
 
