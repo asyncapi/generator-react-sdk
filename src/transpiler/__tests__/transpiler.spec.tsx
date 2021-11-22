@@ -29,7 +29,7 @@ describe('Transpiler', () => {
     describe('with a simple setup', () => {
       const commonjs_testFile = path.resolve(outputFiles, './CommonJS/simple.js');
       const commonjs_testFileMap = path.resolve(outputFiles, './CommonJS/simple.js.map');
-      
+
       test('and import correctly', async () => {
         const content = await readFile(commonjs_testFile, 'utf8');
         expect(switchToUnixLinebreaks(content)).toMatchSnapshot();
@@ -87,8 +87,8 @@ describe('Transpiler', () => {
 
   describe('should keep names of files, even if special chars', () => {
     describe('with a simple setup', () => {
-      const special_testFile = path.resolve(outputFiles, './SpecialChars/!"#€$§%&()=simple.js');
-      const special_testFileMap = path.resolve(outputFiles, './SpecialChars/!"#€$§%&()=simple.js.map');
+      const special_testFile = path.resolve(outputFiles, './SpecialChars/$$simple$$.js');
+      const special_testFileMap = path.resolve(outputFiles, './SpecialChars/$$simple$$.js.map');
 
       test('and import correctly', async () => {
         const content = await readFile(special_testFile, 'utf8');
