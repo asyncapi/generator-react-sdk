@@ -30,7 +30,7 @@
     "./LICENSE"
   ],
   "dependencies": {
-    "@asyncapi/parser": "^1.15.1",
+    "@asyncapi/parser": "^2.0.0-next-major.5",
     "@babel/core": "7.12.9",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.12.7",

@@ -1,11 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
-import { AsyncAPIDocument } from "@asyncapi/parser";
 
 import { transpileFiles } from "../transpiler";
 import { renderTemplate } from "../../renderer";
 import { TemplateRenderResult } from "../../types";
+
+import type { AsyncAPIDocumentInterface } from "@asyncapi/parser";
 
 const readFile = promisify(fs.readFile);
 
@@ -39,7 +40,7 @@ describe('Transpiler', () => {
       });
 
       test('and render correctly', async () => {
-        const content = await renderTemplate(commonjs_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
+        const content = await renderTemplate(commonjs_testFile, { asyncapi: {} as AsyncAPIDocumentInterface, originalAsyncAPI: "", params: {} });
         expect((content as TemplateRenderResult)?.content).toBe("hello Test"); 
       });
     });
@@ -59,7 +60,7 @@ describe('Transpiler', () => {
       });
 
       test('and render correctly', async () => {
-        const content = await renderTemplate(es5_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
+        const content = await renderTemplate(es5_testFile, { asyncapi: {} as AsyncAPIDocumentInterface, originalAsyncAPI: "", params: {} });
         expect((content as TemplateRenderResult)?.content).toBe("hello Test"); 
       });
     });
@@ -79,7 +80,7 @@ describe('Transpiler', () => {
       });
 
       test('and render correctly', async () => {
-        const content = await renderTemplate(es6_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
+        const content = await renderTemplate(es6_testFile, { asyncapi: {} as AsyncAPIDocumentInterface, originalAsyncAPI: "", params: {} });
         expect((content as TemplateRenderResult)?.content).toBe("hello Test"); 
       });
     });
@@ -99,7 +100,7 @@ describe('Transpiler', () => {
       });
 
       test('and render correctly', async () => {
-        const content = await renderTemplate(special_testFile, { asyncapi: {} as AsyncAPIDocument, originalAsyncAPI: "", params: {} });
+        const content = await renderTemplate(special_testFile, { asyncapi: {} as AsyncAPIDocumentInterface, originalAsyncAPI: "", params: {} });
         expect((content as TemplateRenderResult)?.content).toBe("hello Test"); 
       });
     });
