@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { PropsWithChildren } from 'react';
 
 import { IndentationTypes, withIndendation } from "../utils";
 import { FunctionComponent } from "../types";
@@ -38,7 +39,7 @@ export const IndentPropTypes = {
  *   <Indent size={size} type={type}>test</Indent>
  * )
  */
-const Indent: FunctionComponent<IndentProps> = ({ size = 0, type = IndentationTypes.SPACES, childrenContent }) => {
+const Indent: FunctionComponent<PropsWithChildren<IndentProps>> = ({ size = 0, type = IndentationTypes.SPACES, childrenContent }) => {
   return <>{withIndendation(childrenContent, size, type)}</>;
 };
 

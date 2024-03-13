@@ -51,9 +51,6 @@ export async function transpileFiles(directory: string, outputDir: string, optio
             sourcemap: true,
             dir: outputDir,
             exports: "auto",
-            paths: {
-              'react/jsx-runtime': 'react/cjs/react-jsx-runtime.production.min',
-            },
             sanitizeFileName: false,
         })
     }
