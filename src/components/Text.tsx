@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { PropsWithChildren } from 'react';
 
 import { IndentationTypes, withIndendation, withNewLines } from "../utils";
 import { FunctionComponent } from "../types";
@@ -45,7 +46,7 @@ export const TextPropTypes = {
  *   <Text indent={size} type={type} newLines={newLines}>Test</Text>
  * )
  */
-const Text: FunctionComponent<TextProps> = ({ indent = 0, type = IndentationTypes.SPACES, newLines = 1, childrenContent }) => {
+const Text: FunctionComponent<PropsWithChildren<TextProps>> = ({ indent = 0, type = IndentationTypes.SPACES, newLines = 1, childrenContent }) => {
   const contentWithLines = withNewLines(childrenContent, newLines);
   return <>{withIndendation(contentWithLines, indent, type)}</>;
 };

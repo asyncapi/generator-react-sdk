@@ -129,14 +129,8 @@ describe('Renderer', () => {
       return null;
     }
 
-    let error = undefined;
-    try {
-      render(<Component />);
-    } catch(err) {
-      error = err;
-    }
-    // check substring of the desired error
-    expect((error as Error).message).toContain('Invalid hook call.');
+    // A console.error() will be printed due to illegal use of hooks but only in development mode
+    expect(() => render(<Component />)).toThrow("Cannot read properties of null (reading 'useState')");
   });
 
   test('should skips internal React components', () => {
@@ -161,13 +155,6 @@ describe('Renderer', () => {
       )
     }
 
-    let error = undefined;
-    try {
-      render(<Component />);
-    } catch(err) {
-      error = err;
-    }
-    // check substring of the desired error
-    expect((error as Error).message).toEqual('HTML tags is not supported yet.');
+    expect(() => render(<Component />)).toThrow('HTML tags is not supported yet.');
   });
 });

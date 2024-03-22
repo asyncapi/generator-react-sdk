@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { PropsWithChildren } from 'react';
 
 import { FunctionComponent } from "../types";
 
@@ -35,7 +36,7 @@ export const FilePropTypes = {
  *   <File name={name} permissions={permissions}>Test</File>
  * )
  */
-const File: FunctionComponent<FileProps> = ({ children }) => {
+const File: FunctionComponent<PropsWithChildren<FileProps>> = ({ children }) => {
   return <>{children}</>;
 };
 
