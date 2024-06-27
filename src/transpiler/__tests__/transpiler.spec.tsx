@@ -32,9 +32,9 @@ describe('Transpiler', () => {
 
       test('and import correctly', async () => {
         const content = await readFile(commonjs_testFile, 'utf8');
-        expect(switchToUnixLinebreaks(content)).toMatchSnapshot();
+        expect(stripAbsolutePathToReactLib(switchToUnixLinebreaks(content))).toMatchSnapshot();
         const mapContent = await readFile(commonjs_testFileMap, 'utf8');
-        expect(switchToUnixLinebreaks(mapContent)).toMatchSnapshot();
+        expect(stripAbsolutePathToReactLib(switchToUnixLinebreaks(mapContent))).toMatchSnapshot();
         expect(await import(commonjs_testFile)).toBeDefined();
       });
 
@@ -52,9 +52,9 @@ describe('Transpiler', () => {
 
       test('and import correctly', async () => {
         const content = await readFile(es5_testFile, 'utf8')
-        expect(switchToUnixLinebreaks(content)).toMatchSnapshot();
+        expect(stripAbsolutePathToReactLib(switchToUnixLinebreaks(content))).toMatchSnapshot();
         const mapContent = await readFile(es5_testFileMap, 'utf8');
-        expect(switchToUnixLinebreaks(mapContent)).toMatchSnapshot();
+        expect(stripAbsolutePathToReactLib(switchToUnixLinebreaks(mapContent))).toMatchSnapshot();
         expect(await import(es5_testFile)).toBeDefined();
       });
 
@@ -72,9 +72,9 @@ describe('Transpiler', () => {
 
       test('and import correctly', async () => {
         const content = await readFile(es6_testFile, 'utf8')
-        expect(switchToUnixLinebreaks(content)).toMatchSnapshot();
+        expect(stripAbsolutePathToReactLib(switchToUnixLinebreaks(content))).toMatchSnapshot();
         const mapContent = await readFile(es6_testFileMap, 'utf8');
-        expect(switchToUnixLinebreaks(mapContent)).toMatchSnapshot();
+        expect(stripAbsolutePathToReactLib(switchToUnixLinebreaks(mapContent))).toMatchSnapshot();
         expect(await import(es6_testFile)).toBeDefined();
       });
 
@@ -92,9 +92,9 @@ describe('Transpiler', () => {
 
       test('and import correctly', async () => {
         const content = await readFile(special_testFile, 'utf8');
-        expect(switchToUnixLinebreaks(content)).toMatchSnapshot();
+        expect(stripAbsolutePathToReactLib(switchToUnixLinebreaks(content))).toMatchSnapshot();
         const mapContent = await readFile(special_testFileMap, 'utf8');
-        expect(switchToUnixLinebreaks(mapContent)).toMatchSnapshot();
+        expect(stripAbsolutePathToReactLib(switchToUnixLinebreaks(mapContent))).toMatchSnapshot();
         expect(await import(special_testFile)).toBeDefined();
       });
 
@@ -112,4 +112,13 @@ describe('Transpiler', () => {
 */
 function switchToUnixLinebreaks(str: String) {
   return str.replace(/\\r/g, "")
+}
+
+/*
+  The transpiler embeds the absolute path to the react library.
+  We need to replace this in snapshots with something that will be stable across developer environments.
+*/
+function stripAbsolutePathToReactLib(str: String) {
+  const reactPath = require.resolve('react/cjs/react-jsx-runtime.production.min')
+  return str.replace(reactPath, "/full/path/to/react/cjs/react-jsx-runtime.production.min.js")
 }
