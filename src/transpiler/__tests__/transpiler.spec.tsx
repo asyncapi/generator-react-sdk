@@ -114,6 +114,10 @@ function switchToUnixLinebreaks(str: String) {
   return str.replace(/\\r/g, "")
 }
 
+/*
+  The transpiler embeds the absolute path to the react library.
+  We need to replace this in snapshots with something that will be stable across developer environments.
+*/
 function stripAbsolutePathToReactLib(str: String) {
   const reactPath = require.resolve('react/cjs/react-jsx-runtime.production.min')
   return str.replace(reactPath, "/full/path/to/react/cjs/react-jsx-runtime.production.min.js")
