@@ -49,11 +49,17 @@ function importComponent(filepath: string): Promise<TemplateFunction | undefined
       // we should import component only in NodeJS
       if (require === undefined) resolve(undefined);
 
-      const componentPath = filepath;
+      let componentPath = filepath;
 
       // Check if the file exists
       if (!fs.existsSync(componentPath)) {
-        throw new Error(`Template file not found: ${componentPath}`);
+        // If transpiled version doesn't exist, try the original version
+        const originalPath = componentPath.replace('__transpiled', 'template');
+        if (fs.existsSync(originalPath)) {
+          componentPath = originalPath;
+        } else {
+          throw new Error(`Neither transpiled nor original template file found: ${filepath}`);
+        }
       }
 
       // Remove from cache and require the file
