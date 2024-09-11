@@ -110,7 +110,7 @@ describe('Transpiler', () => {
   It is a helper required for snapshot testing on windows. It can't be solved by editor configuration and the end line setting because snapshots are generated not created in the editor.
   We need to remove `\r` from files transpiled on windows before we can match them with the snapshot generated on unix
 */
-function switchToUnixLinebreaks(str: String) {
+function switchToUnixLinebreaks(str: string) {
   return str.replace(/\\r/g, "")
 }
 
@@ -118,7 +118,7 @@ function switchToUnixLinebreaks(str: String) {
   The transpiler embeds the absolute path to the react library.
   We need to replace this in snapshots with something that will be stable across developer environments.
 */
-function stripAbsolutePathToReactLib(str: String) {
+function stripAbsolutePathToReactLib(str: string) {
   const reactPath = require.resolve('react/cjs/react-jsx-runtime.production.min').replace(/\\/g, '/')
   return str.replace(reactPath, "/full/path/to/react/cjs/react-jsx-runtime.production.min.js")
 }
