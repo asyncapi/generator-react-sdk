@@ -1,3 +1,12 @@
+# We've Moved! 🚚
+The code for this repo is now a part the AsyncAPI Generator monorepo: https://github.com/asyncapi/generator/tree/master/apps/react-sdk
+
+Please file bugs and feature requests as issues on the AsyncAPI Generator repo: https://github.com/asyncapi/generator/issues
+
+The package name did not change and is still available in npm as: https://www.npmjs.com/package/@asyncapi/generator-react-sdk
+
+---
+
 [![AsyncAPI React SDK](./assets/readme-banner.png)](https://www.asyncapi.com)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
